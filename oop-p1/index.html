@@ -1,0 +1,1165 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>Práctica 1 - Prácticas de Implementación e Implantación de Sistemas Software</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.adb8469c.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#practica-1-herencia-composicion-y-polimorfismo" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="Prácticas de Implementación e Implantación de Sistemas Software" aria-label="Prácticas de Implementación e Implantación de Sistemas Software" class="md-header-nav__button md-logo">
+          
+            <img alt="logo" src="../figuras/uca.eps" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Prácticas de Implementación e Implantación de Sistemas Software
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Práctica 1
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/TatyPerson/practicas-iiss/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    TatyPerson/practicas-iiss
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href=".." title="Prácticas de Implementación e Implantación de Sistemas Software" class="md-nav__button md-logo">
+      
+        <img alt="logo" src="../figuras/uca.eps" width="48" height="48">
+      
+    </a>
+    Prácticas de Implementación e Implantación de Sistemas Software
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/TatyPerson/practicas-iiss/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    TatyPerson/practicas-iiss
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Prácticas
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Prácticas
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1" checked>
+    
+    <label class="md-nav__link" for="nav-2-1">
+      Programación orientada a objetos
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-1">
+        Programación orientada a objetos
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Práctica 1
+      </label>
+    
+    <a href="./" title="Práctica 1" class="md-nav__link md-nav__link--active">
+      Práctica 1
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#repaso-de-conceptos-teoricos" class="md-nav__link">
+    Repaso de conceptos teóricos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#herencia" class="md-nav__link">
+    Herencia
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definicion" class="md-nav__link">
+    Definición
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cuando-utilizar-la-herencia" class="md-nav__link">
+    ¿Cuándo utilizar la herencia?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#polimorfismo-en-la-herencia" class="md-nav__link">
+    Polimorfismo en la herencia
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cuales-son-las-ventajas-de-la-herencia" class="md-nav__link">
+    ¿Cuáles son las ventajas de la herencia?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#composicion" class="md-nav__link">
+    Composición
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definicion_1" class="md-nav__link">
+    Definición
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cuando-utilizar-la-composicion" class="md-nav__link">
+    ¿Cuándo utilizar la composición?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#polimorfismo-en-la-composicion" class="md-nav__link">
+    Polimorfismo en la composición
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#herencia-vs-composicion" class="md-nav__link">
+    Herencia vs composición
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejercicios-propuestos" class="md-nav__link">
+    Ejercicios propuestos
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-1" class="md-nav__link">
+    Ejercicio 1
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#elementssetjava" class="md-nav__link">
+    ElementsSet.java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mainjava" class="md-nav__link">
+    Main.java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preguntas-propuestas" class="md-nav__link">
+    Preguntas propuestas:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-2" class="md-nav__link">
+    Ejercicio 2
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#animaljava" class="md-nav__link">
+    Animal.java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#catjava" class="md-nav__link">
+    Cat.java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dogjava" class="md-nav__link">
+    Dog.java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mainjava_1" class="md-nav__link">
+    Main.java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preguntas-propuestas_1" class="md-nav__link">
+    Preguntas propuestas:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    Referencias
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../oop-p2/" title="Práctica 2" class="md-nav__link">
+      Práctica 2
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../oop-p3/" title="Práctica 3" class="md-nav__link">
+      Práctica 3
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../oop-p4/" title="Práctica 4" class="md-nav__link">
+      Práctica 4
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2">
+    
+    <label class="md-nav__link" for="nav-2-2">
+      Programación funcional
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        Programación funcional
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../fp-p1/" title="Práctica 1" class="md-nav__link">
+      Práctica 1
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../fp-p2/" title="Práctica 2" class="md-nav__link">
+      Práctica 2
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
+    
+    <label class="md-nav__link" for="nav-2-3">
+      Programación dirigida por eventos
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-3">
+        Programación dirigida por eventos
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ep-p1/" title="Práctica 1" class="md-nav__link">
+      Práctica 1
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ep-p2/" title="Práctica 2" class="md-nav__link">
+      Práctica 2
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ep-p3/" title="Práctica 3" class="md-nav__link">
+      Práctica 3
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#repaso-de-conceptos-teoricos" class="md-nav__link">
+    Repaso de conceptos teóricos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#herencia" class="md-nav__link">
+    Herencia
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definicion" class="md-nav__link">
+    Definición
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cuando-utilizar-la-herencia" class="md-nav__link">
+    ¿Cuándo utilizar la herencia?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#polimorfismo-en-la-herencia" class="md-nav__link">
+    Polimorfismo en la herencia
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cuales-son-las-ventajas-de-la-herencia" class="md-nav__link">
+    ¿Cuáles son las ventajas de la herencia?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#composicion" class="md-nav__link">
+    Composición
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definicion_1" class="md-nav__link">
+    Definición
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cuando-utilizar-la-composicion" class="md-nav__link">
+    ¿Cuándo utilizar la composición?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#polimorfismo-en-la-composicion" class="md-nav__link">
+    Polimorfismo en la composición
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#herencia-vs-composicion" class="md-nav__link">
+    Herencia vs composición
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejercicios-propuestos" class="md-nav__link">
+    Ejercicios propuestos
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-1" class="md-nav__link">
+    Ejercicio 1
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#elementssetjava" class="md-nav__link">
+    ElementsSet.java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mainjava" class="md-nav__link">
+    Main.java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preguntas-propuestas" class="md-nav__link">
+    Preguntas propuestas:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-2" class="md-nav__link">
+    Ejercicio 2
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#animaljava" class="md-nav__link">
+    Animal.java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#catjava" class="md-nav__link">
+    Cat.java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dogjava" class="md-nav__link">
+    Dog.java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mainjava_1" class="md-nav__link">
+    Main.java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preguntas-propuestas_1" class="md-nav__link">
+    Preguntas propuestas:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    Referencias
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/TatyPerson/practicas-iiss/edit/master/docs/oop-p1.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="practica-1-herencia-composicion-y-polimorfismo">Práctica 1: Herencia, composición y polimorfismo</h1>
+<h2 id="repaso-de-conceptos-teoricos"><span style="color:blue">Repaso de conceptos teóricos</span></h2>
+<h2 id="herencia">Herencia</h2>
+<h3 id="definicion">Definición</h3>
+<p>Se puede definir la herencia como el mecanismo por el cual una clase permite heredar sus características (atributos y métodos) a otra clase. Este mecanismo puede ser usado para la reutilización de código, la cual permite realizar extensiones independientes del software original.</p>
+<p><img alt="herencia" src="../figuras/herencia.png" /></p>
+<p>En el ejemplo de la imagen anterior existe una jerarquía de herencia de tres niveles en los que:</p>
+<ul>
+<li>
+<p>Todas las clases heredan las funciones y propiedades de la clase "Animal".</p>
+</li>
+<li>
+<p>La clase "Conejo" hereda las funciones y propiedades de la clase "Herbívoro", las clases "León" y "Hiena" las de la clase "Carnívoro" y la clase "Hombre" las de la clase "Omnívoro".</p>
+</li>
+</ul>
+<h3 id="cuando-utilizar-la-herencia">¿Cuándo utilizar la herencia?</h3>
+<p>La herencia debe ser utilizada cuando se cumplen al menos las siguientes condiciones:</p>
+<ul>
+<li>
+<p><strong>Existe una relación "es un/una" entre las entidades</strong>. Por ejemplo: un león o una hiena son animales, pero un animal no tiene porque ser un león (puede ser cualquiera de las otras subclases). Esto es debido a que la relación de herencia es unidireccional.</p>
+</li>
+<li>
+<p><strong>Se conoce el 100% de los requisitos del software y éstos no van a cambiar</strong>. Si se conoce perfectamente los requisitos del software que se va a implementar y  estos no van a cambiar, se puede deducir las relaciones de herencia que existirán entre las clases desde el principio. No obstante, en cualquier otro caso puede ser costoso durante el desarrollo eliminar/mantener estas relaciones si los requisitos van evolucionando en otro sentido. Por ejemplo, esto sucedería dentro de un proyecto donde se aplica una metodología de desarrollo ágil.</p>
+</li>
+</ul>
+<h3 id="polimorfismo-en-la-herencia">Polimorfismo en la herencia</h3>
+<p>La herencia otorga la propiedad de polimorfismo, que significa que cualquiera de las subclases pueden adoptar la forma de la superclase. Esta es una de las principales ventajas de la herencia, ya que el polimorfismo permite la abstracción del objeto concreto y usar su superclase. </p>
+<p>Por ejemplo, podríamos tratar cualquier instancia de la clase "Hombre" o "León" como una instancia de la clase "Animal", ya que han herendado todas sus funciones y propiedades. Pero no al contrario, ya que la clase "León" podría haber añadido nuevas propiedades o funciones que no estén disponibles en la clase "Animal".</p>
+<h3 id="cuales-son-las-ventajas-de-la-herencia">¿Cuáles son las ventajas de la herencia?</h3>
+<p>Las ventajas que nos propone el uso de la herencia son las siguientes:</p>
+<ul>
+<li>
+<p>Permite reutilizar código de una manera rápida y sencilla.</p>
+</li>
+<li>
+<p>Permite el uso del polimorfismo con facilidad.</p>
+</li>
+<li>
+<p>Permite sobreescribir métodos, adaptándolos a necesidades específicas.</p>
+</li>
+<li>
+<p>Permite crear clases abstractas que hacen de plantilla a las subclases (parecido al patrón de diseño "Template Method").</p>
+</li>
+</ul>
+<h2 id="composicion">Composición</h2>
+<h3 id="definicion_1">Definición</h3>
+<p>La composición se basa en la creación de clases que realizarán una única y específica función que complementaran a otras clases, las cuales estarán compuestas por ellas. Este mecanismo, nos permitirá delegar las funciones a aquellas clases que se han implementado únicamente para cubrirlas, reutilizando su código fuente donde sea necesario.</p>
+<p><img alt="herencia" src="../figuras/composicion.png" /></p>
+<p>En el ejemplo anterior se puede observar:</p>
+<ul>
+<li>
+<p>La clase "Empresa" esta compuesta por instancias de la clase "Empleado".</p>
+</li>
+<li>
+<p>La clase "Empleado" es el compuesto de la clase "Empresa", de hecho se establece una relación donde la cardinalidad es 1..N por lo que la clase "Empresa" en su implementación mantendrá una lista de instancias de la clase "Empleado".</p>
+</li>
+</ul>
+<h3 id="cuando-utilizar-la-composicion">¿Cuándo utilizar la composición?</h3>
+<p>La composición debe ser utilizada cuando se cumplen al menos las siguientes condiciones:</p>
+<ul>
+<li>
+<p><strong>No existe una relación "es un/una" entre las entidades, si no "tiene"</strong>. Por ejemplo: a una persona que le encanta correr se le podría clasificar como "runner", pero establecerlo como herencia sería un error, ya que la persona con el paso del tiempo podría dejar de serlo. En este caso, sería más correcto decir que tiene el "rol" de runner usando la composición, pudiéndolo eliminar cuando fuese necesario.</p>
+</li>
+<li>
+<p><strong>No se conocen 100% los requisitos del software y éstos serán actualizados</strong>. Cuando no se conocen por completo los requisitos del sistema es más correcto no establecer relaciones de herencia que pudiesen ser eliminadas posteriormente. Por este motivo, crear clases con las funciones específicas y vincularlas a otras haciendo uso de la composición, proporciona mayor flexibilidad y tolerancia a cambios en la implementación. Además, permite modularizar el sistemma de forma de que sea posteriormente más facil de mantener.</p>
+</li>
+</ul>
+<h3 id="polimorfismo-en-la-composicion">Polimorfismo en la composición</h3>
+<p>La composición por si misma no es polimórfica, lo cual puede ser de sus mayores desventajas. No obstante, esto puede ser facilmente solventado con el uso de interfaces. De esta manera, los objetos compuestos implementarán las interfaces que interese en cada situación, consiguiendo añadir/eliminar las funciones que implementan sin necesidad de afectar a la funcionalidad propuesta por otras clases.</p>
+<p><img alt="composición polimorfismo" src="../figuras/composicion-polimorfismo.png" /></p>
+<p>En el ejemplo anterior se puede observar:</p>
+<ul>
+<li>
+<p>La clase "MainActivity" tiene una funcionalidad dada por un elemento que contiene de la clase "NavigationDelegate". Por otro lado, la forma de notificar al resto de clases de que proporciona la funcionalidad "navigate()" es implementando la interfaz "NavigationInterface".</p>
+</li>
+<li>
+<p>Cuando la clase "MainActivity" no deba proporcionar la funcionalidad "navigate()" únicamente debe dejar de implementar la interfaz "NavigationInterface" y eliminar la instancia de la clase "NavigationDelegate" o dejar de invocar a su función "navigate()".</p>
+</li>
+</ul>
+<h2 id="herencia-vs-composicion">Herencia vs composición</h2>
+<p>Como se ha comentado anteriormente, la herencia es un mecanismo muy potente para reutilizar código fuente, pero no siempre es la mejor técnica para conseguir este objetivo. Ya que, si se usa la herencia de forma inapropiada se puede conseguir software poco seguro y robusto. Además, el uso de herencia viola el principio de encapsulación, ya que la subclase siempre dependerá de la implementación de los métodos en la superclase (a no ser que los sobreescriba), y éstos métodos se actualizarán en futuras versiones, con lo que se conseguirá incertidumbre en la funcionalidad del código fuente programado.</p>
+<p>A continuación, se muestra una tabla que incluye las diferencias de uso entre la herencia y la composición en algunas de las etapas del desarrollo software y en otros aspectos de interés:</p>
+<p><img alt="tabla comparativa" src="../figuras/tabla-comparativa.png" /></p>
+<h2 id="ejercicios-propuestos"><span style="color:blue">Ejercicios propuestos</span></h2>
+<h3 id="ejercicio-1">Ejercicio 1</h3>
+<p>Dado los siguientes fragmentos de código responder a las siguientes preguntas:</p>
+<h4 id="elementssetjava">ElementsSet.java</h4>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ElementsSet</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="c1">//Number of attempted elements insertions using the &quot;add&quot; method</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">numberOfAddedElements</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">ElementsSet</span><span class="p">()</span> <span class="p">{}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">add</span><span class="p">(</span><span class="n">E</span> <span class="n">element</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">numberOfAddedElements</span><span class="o">++</span><span class="p">;</span> <span class="c1">//Counting the element added</span>
+        <span class="k">return</span> <span class="kd">super</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">element</span><span class="p">);</span>
+    <span class="p">}</span> 
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">addAll</span><span class="p">(</span><span class="n">Collection</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">E</span><span class="o">&gt;</span> <span class="n">elements</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">numberOfAddedElements</span> <span class="o">+=</span> <span class="n">elements</span><span class="p">.</span><span class="na">size</span><span class="p">();</span> <span class="c1">//Counting the elements added</span>
+        <span class="k">return</span> <span class="kd">super</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span><span class="n">elements</span><span class="p">);</span>
+    <span class="p">}</span> 
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getNumberOfAddedElements</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">numberOfAddedElements</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h4 id="mainjava">Main.java</h4>
+<div class="codehilite"><pre><span></span><code><span class="p">...</span>
+    <span class="n">ElementsSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">set</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ElementsSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">();</span>
+    <span class="n">set</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="s">&quot;One&quot;</span><span class="p">,</span> <span class="s">&quot;Two&quot;</span><span class="p">,</span> <span class="s">&quot;Three&quot;</span><span class="p">));</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">set</span><span class="p">.</span><span class="na">getNumberOfAddedElements</span><span class="p">());</span>
+<span class="p">...</span>
+</code></pre></div>
+
+<h4 id="preguntas-propuestas">Preguntas propuestas:</h4>
+<p>a) ¿Es el uso de herencia adecuado para la implementación de la clase "ElementsSet"?, ¿qué salida muestra la función "System.out.println" al invocar el método "getNumberOfAddedElements", 3 o 6?.</p>
+<p>b) En el caso de que haya algún problema en la implementación anterior, proponga una solución alternativa usando composición que resuelva el problema.</p>
+<h3 id="ejercicio-2">Ejercicio 2</h3>
+<h4 id="animaljava">Animal.java</h4>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Animal</span> <span class="p">{</span>
+    <span class="c1">//Number of legs the animal holds</span>
+    <span class="kd">protected</span> <span class="kt">int</span> <span class="n">numberOfLegs</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="n">String</span> <span class="nf">speak</span><span class="p">();</span>
+
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">boolean</span> <span class="nf">eat</span><span class="p">(</span><span class="n">String</span> <span class="n">typeOfFeed</span><span class="p">);</span>
+
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">int</span> <span class="nf">getNumberOfLegs</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h4 id="catjava">Cat.java</h4>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Cat</span> <span class="kd">extends</span> <span class="n">Animal</span> <span class="p">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">speak</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s">&quot;Meow&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">eat</span><span class="p">(</span><span class="n">String</span> <span class="n">typeOfFeed</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">typeOfFeed</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;fish&quot;</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getNumberOfLegs</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kd">super</span><span class="p">.</span><span class="na">numberOfLegs</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h4 id="dogjava">Dog.java</h4>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Dog</span> <span class="kd">extends</span> <span class="n">Animal</span> <span class="p">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">speak</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s">&quot;Woof&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">eat</span><span class="p">(</span><span class="n">String</span> <span class="n">typeOfFeed</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">typeOfFeed</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;meat&quot;</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getNumberOfLegs</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kd">super</span><span class="p">.</span><span class="na">numberOfLegs</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h4 id="mainjava_1">Main.java</h4>
+<div class="codehilite"><pre><span></span><code><span class="p">...</span>
+    <span class="n">Animal</span> <span class="n">cat</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Cat</span><span class="p">();</span>
+    <span class="n">Animal</span> <span class="n">dog</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Dog</span><span class="p">();</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">cat</span><span class="p">.</span><span class="na">speak</span><span class="p">());</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">dog</span><span class="p">.</span><span class="na">speak</span><span class="p">());</span>
+<span class="p">...</span>
+</code></pre></div>
+
+<h4 id="preguntas-propuestas_1">Preguntas propuestas:</h4>
+<p>a) ¿Es correcto el uso de herencia en la implementación de las clases "Cat" y "Dog"?. ¿Qué beneficios se obtiene?.</p>
+<p>b) En el caso de que no sea correcto, proponga una solución alternativa. ¿Cuáles son los beneficios de la solución propuesta frente a la original?.</p>
+<h2 id="referencias">Referencias</h2>
+<p><a href="https://devexperto.com/herencia-vs-composicion/">[1] Blog sobre herencia vs composición.</a></p>
+<p><a href="https://www.amazon.es/Effective-Java-2nd-Edition-Programming/dp/0321356683/tag=licrla-21">[2] Libro effective Java: A programming Language Guide.</a></p>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href=".." title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Home
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../oop-p2/" title="Práctica 2" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Práctica 2
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/TatyPerson" target="_blank" rel="noopener" title="github" class="md-footer-social__link fa fa-github"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.c33a9706.js"></script>
+      
+      <script>app.initialize({version:"1.1",url:{base:".."}})</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>
