@@ -415,7 +415,7 @@
         
           <li class="md-nav__item">
   <a href="#preguntas-propuestas" class="md-nav__link">
-    Preguntas propuestas:
+    Preguntas propuestas
   </a>
   
 </li>
@@ -463,7 +463,7 @@
         
           <li class="md-nav__item">
   <a href="#preguntas-propuestas_1" class="md-nav__link">
-    Preguntas propuestas:
+    Preguntas propuestas
   </a>
   
 </li>
@@ -791,7 +791,7 @@
         
           <li class="md-nav__item">
   <a href="#preguntas-propuestas" class="md-nav__link">
-    Preguntas propuestas:
+    Preguntas propuestas
   </a>
   
 </li>
@@ -839,7 +839,7 @@
         
           <li class="md-nav__item">
   <a href="#preguntas-propuestas_1" class="md-nav__link">
-    Preguntas propuestas:
+    Preguntas propuestas
   </a>
   
 </li>
@@ -885,7 +885,10 @@
 <h2 id="herencia">Herencia</h2>
 <h3 id="definicion">Definición</h3>
 <p>Se puede definir la herencia como el mecanismo por el cual una clase permite heredar sus características (atributos y métodos) a otra clase. Este mecanismo puede ser usado para la reutilización de código, la cual permite realizar extensiones independientes del software original.</p>
+<blockquote>
 <p><img alt="herencia" src="../figuras/herencia.png" /></p>
+<p><small>por <cite>Carlos Villagómez, <a href="https://es.ccm.net/contents/411-poo-herencia">Enciclopedia de Programación Orientada a Objetos</a></cite></small></p>
+</blockquote>
 <p>En el ejemplo de la imagen anterior existe una jerarquía de herencia de tres niveles en los que:</p>
 <ul>
 <li>
@@ -927,7 +930,10 @@
 <h2 id="composicion">Composición</h2>
 <h3 id="definicion_1">Definición</h3>
 <p>La composición se basa en la creación de clases que realizarán una única y específica función que complementaran a otras clases, las cuales estarán compuestas por ellas. Este mecanismo, nos permitirá delegar las funciones a aquellas clases que se han implementado únicamente para cubrirlas, reutilizando su código fuente donde sea necesario.</p>
-<p><img alt="herencia" src="../figuras/composicion.png" /></p>
+<blockquote>
+<p><img alt="composición" src="../figuras/composicion.png" /></p>
+<p><small>por <cite>Arturo Verbel de León, <a href="http://micaminomaster.com.co/sin-categoria/diagrama-de-clases-para-dummies/">Diagrama de clases para dummies</a></cite></small></p>
+</blockquote>
 <p>En el ejemplo anterior se puede observar:</p>
 <ul>
 <li>
@@ -949,7 +955,10 @@
 </ul>
 <h3 id="polimorfismo-en-la-composicion">Polimorfismo en la composición</h3>
 <p>La composición por si misma no es polimórfica, lo cual puede ser de sus mayores desventajas. No obstante, esto puede ser facilmente solventado con el uso de interfaces. De esta manera, los objetos compuestos implementarán las interfaces que interese en cada situación, consiguiendo añadir/eliminar las funciones que implementan sin necesidad de afectar a la funcionalidad propuesta por otras clases.</p>
+<blockquote>
 <p><img alt="composición polimorfismo" src="../figuras/composicion-polimorfismo.png" /></p>
+<p><small>por <cite>Sergio Martínez Rodríguez, <a href="https://devexperto.com/herencia-vs-composicion/">Herencia vs Composición ¿Tienes claro cuál es el rival más débil?</a></cite></small></p>
+</blockquote>
 <p>En el ejemplo anterior se puede observar:</p>
 <ul>
 <li>
@@ -962,7 +971,10 @@
 <h2 id="herencia-vs-composicion">Herencia vs composición</h2>
 <p>Como se ha comentado anteriormente, la herencia es un mecanismo muy potente para reutilizar código fuente, pero no siempre es la mejor técnica para conseguir este objetivo. Ya que, si se usa la herencia de forma inapropiada se puede conseguir software poco seguro y robusto. Además, el uso de herencia viola el principio de encapsulación, ya que la subclase siempre dependerá de la implementación de los métodos en la superclase (a no ser que los sobreescriba), y éstos métodos se actualizarán en futuras versiones, con lo que se conseguirá incertidumbre en la funcionalidad del código fuente programado.</p>
 <p>A continuación, se muestra una tabla que incluye las diferencias de uso entre la herencia y la composición en algunas de las etapas del desarrollo software y en otros aspectos de interés:</p>
+<blockquote>
 <p><img alt="tabla comparativa" src="../figuras/tabla-comparativa.png" /></p>
+<p><small>por <cite>Sergio Martínez Rodríguez, <a href="https://devexperto.com/herencia-vs-composicion/">Herencia vs Composición ¿Tienes claro cuál es el rival más débil?</a></cite></small></p>
+</blockquote>
 <h2 id="ejercicios-propuestos"><span style="color:blue">Ejercicios propuestos</span></h2>
 <h3 id="ejercicio-1">Ejercicio 1</h3>
 <p>Dado los siguientes fragmentos de código responder a las siguientes preguntas:</p>
@@ -999,10 +1011,11 @@
 <span class="p">...</span>
 </code></pre></div>
 
-<h4 id="preguntas-propuestas">Preguntas propuestas:</h4>
+<h4 id="preguntas-propuestas">Preguntas propuestas</h4>
 <p>a) ¿Es el uso de herencia adecuado para la implementación de la clase "ElementsSet"?, ¿qué salida muestra la función "System.out.println" al invocar el método "getNumberOfAddedElements", 3 o 6?.</p>
 <p>b) En el caso de que haya algún problema en la implementación anterior, proponga una solución alternativa usando composición que resuelva el problema.</p>
 <h3 id="ejercicio-2">Ejercicio 2</h3>
+<p>Dado los siguientes fragmentos de código responder a las siguientes preguntas:</p>
 <h4 id="animaljava">Animal.java</h4>
 <div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Animal</span> <span class="p">{</span>
     <span class="c1">//Number of legs the animal holds</span>
@@ -1071,12 +1084,12 @@
 <span class="p">...</span>
 </code></pre></div>
 
-<h4 id="preguntas-propuestas_1">Preguntas propuestas:</h4>
+<h4 id="preguntas-propuestas_1">Preguntas propuestas</h4>
 <p>a) ¿Es correcto el uso de herencia en la implementación de las clases "Cat" y "Dog"?. ¿Qué beneficios se obtiene?.</p>
 <p>b) En el caso de que no sea correcto, proponga una solución alternativa. ¿Cuáles son los beneficios de la solución propuesta frente a la original?.</p>
 <h2 id="referencias">Referencias</h2>
-<p><a href="https://devexperto.com/herencia-vs-composicion/">[1] Blog sobre herencia vs composición.</a></p>
-<p><a href="https://www.amazon.es/Effective-Java-2nd-Edition-Programming/dp/0321356683/tag=licrla-21">[2] Libro effective Java: A programming Language Guide.</a></p>
+<p><a href="https://devexperto.com/herencia-vs-composicion/">[1] Blog Herencia vs Composición ¿Tienes claro cuál es el rival más débil?.</a></p>
+<p><a href="https://www.amazon.es/Effective-Java-2nd-Edition-Programming/dp/0321356683/tag=licrla-21">[2] Libro Effective Java: A programming Language Guide.</a></p>
                 
                   
                 
