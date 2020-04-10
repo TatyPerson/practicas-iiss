@@ -77,7 +77,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#to-do" tabindex="0" class="md-skip">
+      <a href="#repaso-de-conceptos-teoricos" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -468,7 +468,212 @@
                 
                 
                 <h0>Práctica 3</h0>
-<h1 id="to-do">TO DO<a class="headerlink" href="#to-do" title="Permanent link">&para;</a></h1>
+<h1 id="repaso-de-conceptos-teoricos"><span style="color:blue">Repaso de conceptos teóricos</span><a class="headerlink" href="#repaso-de-conceptos-teoricos" title="Permanent link">&para;</a></h1>
+<h1 id="inyeccion-de-dependencias">Inyección de dependencias<a class="headerlink" href="#inyeccion-de-dependencias" title="Permanent link">&para;</a></h1>
+<h2 id="definicion">Definición<a class="headerlink" href="#definicion" title="Permanent link">&para;</a></h2>
+<p>La inyección de dependencias es un patrón de diseño utilizado para implementar la inversión de control (IC, se invierte el flujo tradicional del programa). Por este motivo, permite la creación de objetos fuera de una clase y proporciona esos objetos a otra clase dependiente de ellos de diferentes formas. Utilizando la IC, se traslada la creación y unión de los objetos fuera de la clase que depende de ellos.</p>
+<blockquote>
+<p><img alt="Modelo de inyección de dependencias" src="../figuras/inyeccionDependenciasModelo.png" /></p>
+<p><small>por <cite>TutorialsTeacher, <a href="https://www.tutorialsteacher.com/ioc/dependency-injection">Dependenccy Injection</a></cite></small></p>
+</blockquote>
+<p>A continuación, se describen los tipos de inyección de dependencias existentes:</p>
+<ul>
+<li>
+<p>Inyección a través del constructor: En este tipo de inyección la clase inyectora suministra la dependencia (servicio) a través del constructor de la clase dependente (cliente).</p>
+</li>
+<li>
+<p>Inyección a través de propiedades: En este tipo de inyección la clase inyectora suministra la dependenca (servicio) a través de un método "set" de la clase dependiente (cliente).</p>
+</li>
+<li>
+<p>Inyección a través de métodos: En este tipo de inyección la clase inyectora suministra la dependencia (servicio) a través de un API establecido por la clase dependiente en el que se especifican el/los método/s para suministrar la dependencia (cliente).</p>
+</li>
+</ul>
+<p>Frameworks para facilitar la implementación de inyección de dependencias en Java: <a href="https://www.vogella.com/tutorials/DependencyInjection/article.html">https://www.vogella.com/tutorials/DependencyInjection/article.html</a>.</p>
+<h1 id="programacion-orientada-a-aspectos">Programación orientada a aspectos<a class="headerlink" href="#programacion-orientada-a-aspectos" title="Permanent link">&para;</a></h1>
+<h2 id="definicion_1">Definición<a class="headerlink" href="#definicion_1" title="Permanent link">&para;</a></h2>
+<p>Los aspectos nos permiten agrupar código que se ejecutará en varios lugares en un módulo independiente. Además, este código será inyectado en tiempo de ejecución o compilación (dependiendo del framework) en los puntos de corte especificados en el código fuente. En este caso, la programación orientada a aspectos (AOP) permite introducir nueva funcionalidad dentro de una clase, sin que ésta deba tener conocimiento de su existencia.</p>
+<blockquote>
+<p>Aspect-oriented programming (AOP) complements object-oriented programming by allowing the developer to dynamically modify the static object-oriented model to create a system that can grow to meet new requirements, allowing an application to adopt new characteristics as it develops.</p>
+<p>-- <cite><a href="https://www.webopedia.com/TERM/A/aspect_oriented_programming.html">Vangie Beal</a></cite></p>
+</blockquote>
+<p>AspectJ, framework para facilitar la implementación de inyección de dependencias en Java: <a href="https://www.eclipse.org/aspectj/doc/released/progguide/starting.html">https://www.eclipse.org/aspectj/doc/released/progguide/starting.html</a></p>
+<h1 id="ejercicios-propuestos"><span style="color:blue">Ejercicios propuestos</span><a class="headerlink" href="#ejercicios-propuestos" title="Permanent link">&para;</a></h1>
+<h2 id="ejercicio-1">Ejercicio 1<a class="headerlink" href="#ejercicio-1" title="Permanent link">&para;</a></h2>
+<p>Dado los siguientes fragmentos de código responder a las siguientes preguntas:</p>
+<h3 id="dbaccessjava">DBAccess.java<a class="headerlink" href="#dbaccessjava" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">DBAccess</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initConnection</span><span class="p">();</span>
+
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="dbaccessajava">DBAccessA.java<a class="headerlink" href="#dbaccessajava" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DBAccessA</span> <span class="kd">implements</span> <span class="n">DBAccess</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="nf">DBAccessA</span><span class="p">()</span> <span class="p">{}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initConnection</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Init A connection with database..&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="dbaccessbjava">DBAccessB.java<a class="headerlink" href="#dbaccessbjava" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DBAccessB</span> <span class="kd">implements</span> <span class="n">DBAccess</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="nf">DBAccessB</span><span class="p">()</span> <span class="p">{}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initConnection</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Init B connection with database..&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="dbclientjava">DBClient.java<a class="headerlink" href="#dbclientjava" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DBClient</span> <span class="p">{</span>
+
+    <span class="kd">private</span> <span class="n">DBAccess</span> <span class="n">dbAccess</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">DBClient</span><span class="p">(</span><span class="n">DBAccess</span> <span class="n">dbAccess</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">dbAccess</span> <span class="o">=</span> <span class="n">dbAccess</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDBAccess</span><span class="p">(</span><span class="n">DBAccess</span> <span class="n">dbAccess</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">dbAccess</span> <span class="o">=</span> <span class="n">dbAccess</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">getAllFromDataBase</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">dbAccess</span><span class="p">.</span><span class="na">initConnection</span><span class="p">();</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Returning all data from database..&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">getSomeDataFromDataBase</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">dbAccess</span><span class="p">.</span><span class="na">initConnection</span><span class="p">();</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Returning some data from database..&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="mainjava">Main.java<a class="headerlink" href="#mainjava" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">DBAccess</span> <span class="n">dbAccessB</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DBAccessB</span><span class="p">();</span>
+        <span class="n">DBClient</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DBClient</span><span class="p">(</span><span class="n">dbAccessB</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Querying all data from database..&quot;</span><span class="p">);</span>
+        <span class="n">client</span><span class="p">.</span><span class="na">getAllFromDataBase</span><span class="p">();</span>
+
+        <span class="n">DBAccess</span> <span class="n">dbAccessA</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DBAccessA</span><span class="p">();</span>
+        <span class="n">client</span><span class="p">.</span><span class="na">setDBAccess</span><span class="p">(</span><span class="n">dbAccessA</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Querying some data from database..&quot;</span><span class="p">);</span>
+        <span class="n">client</span><span class="p">.</span><span class="na">getSomeDataFromDataBase</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="preguntas-propuestas">Preguntas propuestas<a class="headerlink" href="#preguntas-propuestas" title="Permanent link">&para;</a></h3>
+<p>a) ¿Se realiza inyección de dependencias entre las clases anteriores?, si es así identifique la clase inyectora, el servicio y el cliente.</p>
+<p>b) En el caso de que exista inyección de dependencias además indique:</p>
+<ul>
+<li>El método de inyección que se realiza (constructor, propiedad o método).</li>
+<li>La/s línea/s donde se realiza la inyección de dependencias.</li>
+</ul>
+<h2 id="ejercicio-2">Ejercicio 2<a class="headerlink" href="#ejercicio-2" title="Permanent link">&para;</a></h2>
+<p>Dado los siguientes fragmentos de código responder a las siguientes preguntas:</p>
+<h3 id="bankjava">Bank.java<a class="headerlink" href="#bankjava" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Bank</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="nf">Bank</span><span class="p">()</span> <span class="p">{}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">createUser</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Creating user..&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">makeTransaction</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Making transaction..&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">takeMoneyOut</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Taking money out..&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">showUsers</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Showing users..&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="mainjava_1">Main.java<a class="headerlink" href="#mainjava_1" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="p">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Scanner</span> <span class="n">input</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;AspectJ Bank&quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;------------&quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;1 - Create user&quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;2 - Make transaction&quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;3 - Take money out&quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;4 - Show users&quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;5  - Exit&quot;</span><span class="p">);</span>
+
+        <span class="kt">int</span> <span class="n">option</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">input</span><span class="p">.</span><span class="na">nextLine</span><span class="p">());</span>
+        <span class="n">Bank</span> <span class="n">bank</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Bank</span><span class="p">();</span>
+
+        <span class="k">switch</span><span class="p">(</span><span class="n">option</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">bank</span><span class="p">.</span><span class="na">createUser</span><span class="p">();</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">bank</span><span class="p">.</span><span class="na">makeTransaction</span><span class="p">();</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">bank</span><span class="p">.</span><span class="na">takeMoneyOut</span><span class="p">();</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="n">bank</span><span class="p">.</span><span class="na">showUsers</span><span class="p">();</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="mi">5</span><span class="p">:</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Exiting..&quot;</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="loginaspectjava">LoginAspect.java<a class="headerlink" href="#loginaspectjava" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">org.aspectj.lang.JoinPoint</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.aspectj.lang.annotation.After</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.aspectj.lang.annotation.Aspect</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.aspectj.lang.annotation.Before</span><span class="p">;</span>
+
+<span class="nd">@Aspect</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">LoginAspect</span> <span class="p">{</span>
+    <span class="nd">@Before</span><span class="p">(</span><span class="s">&quot;..TO-DO..&quot;</span><span class="p">)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">before</span><span class="p">(</span><span class="n">JoinPoint</span> <span class="n">joinPoint</span><span class="p">){</span>
+        <span class="c1">//...TO-DO..</span>
+    <span class="p">}</span>
+
+    <span class="nd">@After</span><span class="p">(</span><span class="s">&quot;..TO-DO..&quot;</span><span class="p">)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">after</span><span class="p">(</span><span class="n">JoinPoint</span> <span class="n">joinPoint</span><span class="p">){</span>
+        <span class="c1">//...TO-DO..</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="preguntas-propuestas_1">Preguntas propuestas<a class="headerlink" href="#preguntas-propuestas_1" title="Permanent link">&para;</a></h3>
+<p>Complete en la clase "LoginAspect.java" las secciones "TO-DO" de forma que se cumplan las siguientes condiciones:</p>
+<p>a) Mostrar el mensaje "The login is required" antes de la ejecución de las operaciones "makeTransaction" y "takeMoneyOut".</p>
+<p>b) Mostrar el mensaje "The database is empty" después de la ejecución de la operación "showUsers".</p>
+<p>c) Sustituya el fichero "LoginAspect.java" por el fichero "LoginAspect.aj" incluyendo la misma funcionalidad utilizando la sintaxis de AspectJ.</p>
                 
                   
                 
