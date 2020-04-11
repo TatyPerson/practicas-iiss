@@ -469,28 +469,27 @@
                 
                 <h0>Práctica 3</h0>
 <h1 id="repaso-de-conceptos-teoricos"><span style="color:blue">Repaso de conceptos teóricos</span><a class="headerlink" href="#repaso-de-conceptos-teoricos" title="Permanent link">&para;</a></h1>
+<p>Las dos técnicas siguientes, la inyección de dependencias y la programación de aspectos, nos permiten implementar el principio de ortogonalidad entre componentes software.</p>
 <h1 id="inyeccion-de-dependencias">Inyección de dependencias<a class="headerlink" href="#inyeccion-de-dependencias" title="Permanent link">&para;</a></h1>
-<h2 id="definicion">Definición<a class="headerlink" href="#definicion" title="Permanent link">&para;</a></h2>
-<p>La inyección de dependencias es un patrón de diseño utilizado para implementar la inversión de control (IC, se invierte el flujo tradicional del programa). Por este motivo, permite la creación de objetos fuera de una clase y proporciona esos objetos a otra clase dependiente de ellos de diferentes formas. Utilizando la IC, se traslada la creación y unión de los objetos fuera de la clase que depende de ellos.</p>
+<p>La inyección de dependencias es una técnica utilizada para implementar la inversión de control (IC, se invierte el flujo tradicional del programa). Por este motivo, permite la creación de objetos fuera de una clase y proporciona esos objetos a otra clase dependiente de ellos de diferentes formas. Utilizando la IC, se traslada la creación y unión de los objetos fuera de la clase que depende de ellos.</p>
 <blockquote>
 <p><img alt="Modelo de inyección de dependencias" src="../figuras/inyeccionDependenciasModelo.png" /></p>
-<p><small>por <cite>TutorialsTeacher, <a href="https://www.tutorialsteacher.com/ioc/dependency-injection">Dependenccy Injection</a></cite></small></p>
+<p><small>por <cite>TutorialsTeacher, <a href="https://www.tutorialsteacher.com/ioc/dependency-injection">Dependency Injection</a></cite></small></p>
 </blockquote>
 <p>A continuación, se describen los tipos de inyección de dependencias existentes:</p>
 <ul>
 <li>
-<p>Inyección a través del constructor: En este tipo de inyección la clase inyectora suministra la dependencia (servicio) a través del constructor de la clase dependente (cliente).</p>
+<p>Inyección a través del <strong>constructor</strong>: En este tipo de inyección la clase inyectora suministra la dependencia (servicio) a través del constructor de la clase dependente (cliente).</p>
 </li>
 <li>
-<p>Inyección a través de propiedades: En este tipo de inyección la clase inyectora suministra la dependenca (servicio) a través de un método "set" de la clase dependiente (cliente).</p>
+<p>Inyección a través de <strong>propiedades</strong>: En este tipo de inyección la clase inyectora suministra la dependenca (servicio) a través de un método "set" de la clase dependiente (cliente).</p>
 </li>
 <li>
-<p>Inyección a través de métodos: En este tipo de inyección la clase inyectora suministra la dependencia (servicio) a través de un API establecido por la clase dependiente en el que se especifican el/los método/s para suministrar la dependencia (cliente).</p>
+<p>Inyección a través de <strong>métodos</strong>: En este tipo de inyección la clase inyectora suministra la dependencia (servicio) a través de un API establecido por la clase dependiente en el que se especifican el/los método/s para suministrar la dependencia (cliente).</p>
 </li>
 </ul>
 <p>Frameworks para facilitar la implementación de inyección de dependencias en Java: <a href="https://www.vogella.com/tutorials/DependencyInjection/article.html">https://www.vogella.com/tutorials/DependencyInjection/article.html</a>.</p>
 <h1 id="programacion-orientada-a-aspectos">Programación orientada a aspectos<a class="headerlink" href="#programacion-orientada-a-aspectos" title="Permanent link">&para;</a></h1>
-<h2 id="definicion_1">Definición<a class="headerlink" href="#definicion_1" title="Permanent link">&para;</a></h2>
 <p>Los aspectos nos permiten agrupar código que se ejecutará en varios lugares en un módulo independiente. Además, este código será inyectado en tiempo de ejecución o compilación (dependiendo del framework) en los puntos de corte especificados en el código fuente. En este caso, la programación orientada a aspectos (AOP) permite introducir nueva funcionalidad dentro de una clase, sin que ésta deba tener conocimiento de su existencia.</p>
 <blockquote>
 <p>Aspect-oriented programming (AOP) complements object-oriented programming by allowing the developer to dynamically modify the static object-oriented model to create a system that can grow to meet new requirements, allowing an application to adopt new characteristics as it develops.</p>
