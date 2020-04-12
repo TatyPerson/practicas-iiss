@@ -488,14 +488,26 @@
 <p>Inyección a través de <strong>métodos</strong>: En este tipo de inyección la clase inyectora suministra la dependencia (servicio) a través de un API establecido por la clase dependiente en el que se especifican el/los método/s para suministrar la dependencia (cliente).</p>
 </li>
 </ul>
-<p>Frameworks para facilitar la implementación de inyección de dependencias en Java: <a href="https://www.vogella.com/tutorials/DependencyInjection/article.html">https://www.vogella.com/tutorials/DependencyInjection/article.html</a>.</p>
+<p>A continuación, se listan algunos de los frameworks utilizados para facilitar la implementación de inyección de dependencias en Java:</p>
+<ul>
+<li>Google guice: <a href="https://github.com/google/guice/wiki/GettingStarted">https://github.com/google/guice/wiki/GettingStarted</a>.</li>
+<li>Spring Framework: <a href="https://www.vogella.com/tutorials/SpringDependencyInjection/article.html">https://www.vogella.com/tutorials/SpringDependencyInjection/article.html</a>.</li>
+<li>Eclipse RCP: <a href="https://wiki.eclipse.org/Eclipse4/RCP/Dependency_Injection">https://wiki.eclipse.org/Eclipse4/RCP/Dependency_Injection</a>.</li>
+</ul>
 <h1 id="programacion-orientada-a-aspectos">Programación orientada a aspectos<a class="headerlink" href="#programacion-orientada-a-aspectos" title="Permanent link">&para;</a></h1>
 <p>Los aspectos nos permiten agrupar código que se ejecutará en varios lugares en un módulo independiente. Además, este código será inyectado en tiempo de ejecución o compilación (dependiendo del framework) en los puntos de corte especificados en el código fuente. En este caso, la programación orientada a aspectos (AOP) permite introducir nueva funcionalidad dentro de una clase, sin que ésta deba tener conocimiento de su existencia.</p>
 <blockquote>
 <p>Aspect-oriented programming (AOP) complements object-oriented programming by allowing the developer to dynamically modify the static object-oriented model to create a system that can grow to meet new requirements, allowing an application to adopt new characteristics as it develops.</p>
 <p>-- <cite><a href="https://www.webopedia.com/TERM/A/aspect_oriented_programming.html">Vangie Beal</a></cite></p>
 </blockquote>
-<p>AspectJ, framework para facilitar la implementación de inyección de dependencias en Java: <a href="https://www.eclipse.org/aspectj/doc/released/progguide/starting.html">https://www.eclipse.org/aspectj/doc/released/progguide/starting.html</a></p>
+<p>AspectJ, framework para facilitar la implementación de inyección de dependencias en Java:</p>
+<ul>
+<li>Documentación oficial de AspectJ: <a href="https://www.eclipse.org/aspectj/docs.php">https://www.eclipse.org/aspectj/docs.php</a></li>
+<li>AspectJ Hello World: <a href="https://www.baeldung.com/aspectj">https://www.baeldung.com/aspectj</a></li>
+<li>Cheat sheet para la definición de etiquetas en AspectJ: <a href="https://blog.espenberntsen.net/2010/03/20/aspectj-cheat-sheet/">https://blog.espenberntsen.net/2010/03/20/aspectj-cheat-sheet/</a></li>
+<li>Ejemplo de configuración de la etiqueta <em>Before</em> en AspectJ: <a href="https://howtodoinjava.com/spring-aop/aspectj-before-annotation-example/">https://howtodoinjava.com/spring-aop/aspectj-before-annotation-example/</a></li>
+<li>Ejemplo de configuración de la etiqueta <em>After</em> en AspectJ: <a href="https://howtodoinjava.com/spring-aop/aspectj-after-annotation-example/">https://howtodoinjava.com/spring-aop/aspectj-after-annotation-example/</a></li>
+</ul>
 <h1 id="ejercicios-propuestos"><span style="color:blue">Ejercicios propuestos</span><a class="headerlink" href="#ejercicios-propuestos" title="Permanent link">&para;</a></h1>
 <h2 id="ejercicio-1">Ejercicio 1<a class="headerlink" href="#ejercicio-1" title="Permanent link">&para;</a></h2>
 <p>Dado los siguientes fragmentos de código responder a las siguientes preguntas:</p>
@@ -669,10 +681,28 @@
 </code></pre></div>
 
 <h3 id="preguntas-propuestas_1">Preguntas propuestas<a class="headerlink" href="#preguntas-propuestas_1" title="Permanent link">&para;</a></h3>
-<p>Complete en la clase "LoginAspect.java" las secciones "TO-DO" de forma que se cumplan las siguientes condiciones:</p>
+<p>En primer lugar, se tiene que configurar el entorno para realizar el ejercicio:</p>
+<ul>
+<li><strong>Instalar Eclipse IDE for Java Developers</strong>: <a href="https://www.eclipse.org/downloads/packages/release/2020-03/r/eclipse-ide-java-developers">https://www.eclipse.org/downloads/packages/release/2020-03/r/eclipse-ide-java-developers</a>.</li>
+<li><strong>Instalar el plug-in de Eclipse para trabajar con AspectJ</strong>: Dentro de Eclipse seleccionar Help &gt; Eclipse Marketplace &gt; Buscar AspectJ Development Tools y hacer click en "Install".</li>
+<li><strong>Descargar la plantilla del proyecto</strong>: <a href="https://drive.google.com/file/d/1_L9cj0BTcqHZEnJK7aPZXplZiDaH9Ow3/view?usp=sharing">https://drive.google.com/file/d/1_L9cj0BTcqHZEnJK7aPZXplZiDaH9Ow3/view?usp=sharing</a>.</li>
+<li><strong>Importar el proyecto en Eclipse</strong>: Descomprimir el zip descargado en el paso anterior (P3Ejercicio2_template.zip). Posteriormente, en Eclipse seleccionar File &gt; Import &gt; Projects from Folder or Archive &gt; Click en "Directory" y seleccionar la ruta de la carpeta descomprimida &gt; Click en "Finish".</li>
+</ul>
+<p>Posteriormente, complete en la clase "LoginAspect.java" las secciones "TO-DO" de forma que se cumplan las siguientes condiciones:</p>
 <p>a) Mostrar el mensaje "The login is required" antes de la ejecución de las operaciones "makeTransaction" y "takeMoneyOut".</p>
 <p>b) Mostrar el mensaje "The database is empty" después de la ejecución de la operación "showUsers".</p>
-<p>c) Sustituya el fichero "LoginAspect.java" por el fichero "LoginAspect.aj" incluyendo la misma funcionalidad utilizando la sintaxis de AspectJ.</p>
+<p>Finalmente, sustituya el fichero "LoginAspect.java" por el fichero "LoginAspect.aj" incluyendo la misma funcionalidad utilizando la sintaxis de AspectJ.</p>
+<h1 id="referencias">Referencias<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h1>
+<p><a href="https://www.tutorialsteacher.com/ioc/dependency-injection">[1] Blog Dependecy Injection.</a></p>
+<p><a href="https://github.com/google/guice/wiki/GettingStarted">[2] Google Guice Framework.</a></p>
+<p><a href="https://www.vogella.com/tutorials/SpringDependencyInjection/article.html">[3] Spring Framework.</a></p>
+<p><a href="https://wiki.eclipse.org/Eclipse4/RCP/Dependency_Injection">[4] Eclipse RCP.</a></p>
+<p><a href="https://www.webopedia.com/TERM/A/aspect_oriented_programming.html">[5] Blog Aspect-Oriented Programming.</a></p>
+<p><a href="https://www.eclipse.org/aspectj/docs.php">[6] AspectJ Documentación Oficial.</a></p>
+<p><a href="https://www.baeldung.com/aspectj">[7] Blog Intro to AspectJ.</a></p>
+<p><a href="https://blog.espenberntsen.net/2010/03/20/aspectj-cheat-sheet/">[8] Blog Java and Spring Development.</a></p>
+<p><a href="https://howtodoinjava.com/spring-aop/aspectj-before-annotation-example/">[9] Blog AspectJ Before Annotation.</a></p>
+<p><a href="https://howtodoinjava.com/spring-aop/aspectj-after-annotation-example/">[10] Blog AspectJ After Annotation.</a></p>
                 
                   
                 
