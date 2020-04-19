@@ -77,7 +77,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#to-do" tabindex="0" class="md-skip">
+      <a href="#repaso-de-conceptos-teoricos" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -467,8 +467,203 @@
                   <a href="https://github.com/TatyPerson/practicas-iiss/edit/master/docs/oop-p4.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h0>Práctica 4</h0>
-<h1 id="to-do">TO DO<a class="headerlink" href="#to-do" title="Permanent link">&para;</a></h1>
+                <h0>Práctica 4: Aserciones</h0>
+<h1 id="repaso-de-conceptos-teoricos"><span style="color:blue">Repaso de conceptos teóricos</span><a class="headerlink" href="#repaso-de-conceptos-teoricos" title="Permanent link">&para;</a></h1>
+<h1 id="aserciones">Aserciones<a class="headerlink" href="#aserciones" title="Permanent link">&para;</a></h1>
+<p>Las aserciones son un método para aumentar la fiabilidad del código que se esta implementando. Las aserciones son expresiones que representan una condición que debe cumplirse en una parte específica del código. Si una aserción no se cumple, el programa generará un error en ese punto.</p>
+<blockquote>
+<p>An assertion is a statement in the Java programming language that enables you to test your assumptions about your program. For example, if you write a method that calculates the speed of a particle, you might assert that the calculated speed is less than the speed of light.</p>
+<p>Each assertion contains a boolean expression that you believe will be true when the assertion executes. If it is not true, the system will throw an error. By verifying that the boolean expression is indeed true, the assertion confirms your assumptions about the behavior of your program, increasing your confidence that the program is free of errors.</p>
+<p>Experience has shown that writing assertions while programming is one of the quickest and most effective ways to detect and correct bugs. As an added benefit, assertions serve to document the inner workings of your program, enhancing maintainability.</p>
+<p>-- <cite><a href="https://docs.oracle.com/javase/8/docs/technotes/guides/language/assert.html">Documentación oficial de Java.</a></cite></p>
+</blockquote>
+<p>A continuación, se muestra un ejemplo de una aserción implementada en Java:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">assert</span> <span class="n">price</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
+</code></pre></div>
+
+<p>En este caso, la aserción comprueba que el valor del atributo <em>price</em> debe ser siempre mayor que 0, en el caso de que el valor sea 0 o inferior la aserción no se cumplirá. Esto permite comprobar que el programa esta realizando un funcionamiento correcto en este sentido.</p>
+<p>Como se ha comentado anteriormente, si la condición que sigue al keyword <em>assert</em> no se cumple el programa lanzará una excepción de tipo "AssertionError". Para que el mensaje de error asociado sea más descriptivo se puede especificar su contenido como se muestra a continuación:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">assert</span> <span class="n">price</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">:</span> <span class="s">&quot;El precio es menor que 0.&quot;</span><span class="p">;</span>
+</code></pre></div>
+
+<p>Estas excepciones pueden ser capturadas, o en caso contrario el intérprete de Java se encargará de ellas y mostrará la excepción por consola. A continuación, se muestra un ejemplo del error generado cuando una aserción no se cumple:</p>
+<p><div class="codehilite"><pre><span></span><code><span class="n">Exception</span> <span class="n">in</span> <span class="n">thread</span> <span class="err">“</span><span class="n">main</span><span class="err">”</span> <span class="n">java</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">AssertionError</span>
+<span class="n">at</span> <span class="n">AssertTest</span><span class="p">.</span><span class="na">main</span><span class="p">(</span><span class="n">AssertTest</span><span class="p">.</span><span class="na">java</span><span class="p">:</span><span class="mi">14</span><span class="p">)</span>
+</code></pre></div>
+En el ejemplo anterior se muestra un error generado donde no se ha especificado ningún mensaje para que sea más descriptivo. A continuación, se muestra un error donde se ha especificado el mensaje:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">Exception</span> <span class="n">in</span> <span class="n">thread</span> <span class="err">“</span><span class="n">main</span><span class="err">”</span> <span class="n">java</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">AssertionError</span><span class="p">:</span> <span class="n">El</span> <span class="n">precio</span> <span class="n">es</span> <span class="n">menor</span> <span class="n">que</span> <span class="mf">0.</span>
+<span class="n">at</span> <span class="n">AssertTest</span><span class="p">.</span><span class="na">main</span><span class="p">(</span><span class="n">AssertTest</span><span class="p">.</span><span class="na">java</span><span class="p">:</span><span class="mi">14</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Como se puede comprobar, la incorporación de mensajes aclaratorios es una buena práctica, ya que en el primer caso es díficil conocer el motivo de error del programa, a no ser que se visualice el contenido de la línea 14 del fichero "AssertTest.java".</p>
+<h1 id="configuracion-de-eclipse-para-usar-aserciones">Configuración de Eclipse para usar aserciones<a class="headerlink" href="#configuracion-de-eclipse-para-usar-aserciones" title="Permanent link">&para;</a></h1>
+<p>Aunque las aserciones sean parte oficial del lenguaje Java, se debe configurar la ejecución del programa para que se muestren los errores asociados a éstas.</p>
+<p>En Eclipse se puede realizar esta opción haciendo click derecho sobre el proyecto: "Run as" &gt; "Run configurations" &gt; Click derecho sobre "Java application" &gt; "New Configuration". A continuación, se abrirá la siguiente ventana de configuración:</p>
+<blockquote>
+<p><img alt="RunConfigurations1" src="../figuras/asserts_RunConfigurations_1.png" /></p>
+<p><small><cite>Configuración de la clase principal del proyecto (main).</cite></small></p>
+</blockquote>
+<p>En primer lugar, en la pestaña "Main se debe seleccionar la clase principal del proyecto, la cual será la clase que contenga el función "main", tal y como se muestra en la figura anterior.</p>
+<blockquote>
+<p><img alt="RunConfigurations2" src="../figuras/asserts_RunConfigurations_2.png" /></p>
+<p><small><cite>Incorporación de argumentos en la ejecución para permitir usar aserciones.</cite></small></p>
+</blockquote>
+<p>Posteriormente, en la pestaña "Arguments" se deben añadir las opciones "-ea" en "VM arguments", las cuales habilitarán el procesamiento de las aserciones en el proyecto.</p>
+<p>Finalmente, hacer click en el botón "Run" y el programa se ejecutará mostrando los errores existentes en las aserciones en el caso de que existan.</p>
+<h1 id="ejercicios-propuestos"><span style="color:blue">Ejercicios propuestos</span><a class="headerlink" href="#ejercicios-propuestos" title="Permanent link">&para;</a></h1>
+<h2 id="ejercicio-1">Ejercicio 1<a class="headerlink" href="#ejercicio-1" title="Permanent link">&para;</a></h2>
+<p>Dado los siguientes fragmentos de código responder a las siguientes preguntas:</p>
+<h3 id="productjava">Product.java<a class="headerlink" href="#productjava" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Product</span> <span class="p">{</span>
+
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">code</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">category</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">weight</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">height</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">Product</span><span class="p">(</span><span class="kt">int</span> <span class="n">code</span><span class="p">,</span> <span class="n">String</span> <span class="n">name</span><span class="p">,</span> <span class="n">String</span> <span class="n">category</span><span class="p">,</span> <span class="kt">double</span> <span class="n">weight</span><span class="p">,</span> <span class="kt">double</span> <span class="n">height</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">code</span> <span class="o">=</span> <span class="n">code</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">category</span> <span class="o">=</span> <span class="n">category</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">weight</span> <span class="o">=</span> <span class="n">weight</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">height</span> <span class="o">=</span> <span class="n">height</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getCode</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">code</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="p">(</span><span class="n">String</span> <span class="n">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCategory</span><span class="p">(</span><span class="n">String</span> <span class="n">category</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">category</span> <span class="o">=</span> <span class="n">category</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getCategory</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">category</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setWeight</span><span class="p">(</span><span class="kt">double</span> <span class="n">weight</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">weight</span> <span class="o">=</span> <span class="n">weight</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getWeight</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">weight</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setHeight</span><span class="p">(</span><span class="kt">double</span> <span class="n">height</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">height</span> <span class="o">=</span> <span class="n">height</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getHeight</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">height</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="shoppingcartjava">ShoppingCart.java<a class="headerlink" href="#shoppingcartjava" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.util.HashMap</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Map</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ShoppingCart</span> <span class="p">{</span>
+
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">Product</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">shoppingCart</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">ShoppingCart</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">shoppingCart</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Product</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addProduct</span><span class="p">(</span><span class="n">Product</span> <span class="n">product</span><span class="p">,</span> <span class="kt">int</span> <span class="n">number</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="n">shoppingCart</span><span class="p">.</span><span class="na">keySet</span><span class="p">().</span><span class="na">stream</span><span class="p">().</span><span class="na">filter</span><span class="p">(</span><span class="n">element</span> <span class="o">-&gt;</span> <span class="n">element</span><span class="p">.</span><span class="na">getCode</span><span class="p">()</span> <span class="o">==</span> <span class="n">product</span><span class="p">.</span><span class="na">getCode</span><span class="p">()).</span><span class="na">count</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">shoppingCart</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">product</span><span class="p">,</span> <span class="n">number</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">printShoppingCartContent</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;The shopping cart content is: &quot;</span><span class="p">);</span>
+
+        <span class="k">for</span><span class="p">(</span><span class="n">Product</span> <span class="n">product</span><span class="p">:</span> <span class="n">shoppingCart</span><span class="p">.</span><span class="na">keySet</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">product</span><span class="p">.</span><span class="na">getCode</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot; - &quot;</span> <span class="o">+</span> <span class="n">product</span><span class="p">.</span><span class="na">getName</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot; : &quot;</span> <span class="o">+</span> <span class="n">shoppingCart</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">product</span><span class="p">));</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="mainjava">Main.java<a class="headerlink" href="#mainjava" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ShoppingCart</span> <span class="n">shoppingCart</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ShoppingCart</span><span class="p">();</span>
+
+        <span class="n">Product</span> <span class="n">product1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;Product1&quot;</span><span class="p">,</span> <span class="s">&quot;Category1&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">);</span>
+        <span class="n">Product</span> <span class="n">product2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">&quot;Product2&quot;</span><span class="p">,</span> <span class="s">&quot;Category2&quot;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.0</span><span class="p">);</span>
+        <span class="n">Product</span> <span class="n">product3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">&quot;Product3&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">);</span>
+        <span class="n">Product</span> <span class="n">product4</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="s">&quot;Category4&quot;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">);</span>
+        <span class="n">Product</span> <span class="n">product5</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s">&quot;Product5&quot;</span><span class="p">,</span> <span class="s">&quot;Caregory5&quot;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">);</span>
+        <span class="n">Product</span> <span class="n">product6</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="s">&quot;Product6&quot;</span><span class="p">,</span> <span class="s">&quot;Caregory6&quot;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">);</span>
+
+
+        <span class="n">shoppingCart</span><span class="p">.</span><span class="na">addProduct</span><span class="p">(</span><span class="n">product1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+        <span class="n">shoppingCart</span><span class="p">.</span><span class="na">addProduct</span><span class="p">(</span><span class="n">product2</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="n">shoppingCart</span><span class="p">.</span><span class="na">addProduct</span><span class="p">(</span><span class="n">product3</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="n">shoppingCart</span><span class="p">.</span><span class="na">addProduct</span><span class="p">(</span><span class="n">product4</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">);</span>
+        <span class="n">shoppingCart</span><span class="p">.</span><span class="na">addProduct</span><span class="p">(</span><span class="n">product5</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+        <span class="n">shoppingCart</span><span class="p">.</span><span class="na">addProduct</span><span class="p">(</span><span class="n">product6</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+
+        <span class="n">shoppingCart</span><span class="p">.</span><span class="na">printShoppingCartContent</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="preguntas-propuestas">Preguntas propuestas<a class="headerlink" href="#preguntas-propuestas" title="Permanent link">&para;</a></h3>
+<p>Complete en las clases "Product.java" y "ShoppingCart.java" añadiendo aserciones donde sea necesario que permitan que se cumplan las siguientes condiciones:</p>
+<p>a) En la clase "Product.java":</p>
+<ul>
+<li>
+<p>El atributo <em>code</em> no puede ser un número negativo.</p>
+</li>
+<li>
+<p>El atributo <em>code</em> no puede estar repetido.</p>
+</li>
+<li>
+<p>El atributo <em>name</em> no puede estar vacío.</p>
+</li>
+<li>
+<p>El atributo <em>category</em> no puede estar vacío.</p>
+</li>
+<li>
+<p>El atributo <em>weight</em> no puede ser un número negativo.</p>
+</li>
+<li>
+<p>El atributo <em>height</em> no puede ser un número negativo.</p>
+</li>
+</ul>
+<p>Además, añada un mensaje de error descriptivo en cada una de las aserciones que haya implementado.</p>
+<p>b) En la clase "ShoppingCart.java":</p>
+<ul>
+<li>No se puede añadir un producto con un número de unidades negativo o nulo.</li>
+</ul>
+<h2 id="ejercicio-2">Ejercicio 2<a class="headerlink" href="#ejercicio-2" title="Permanent link">&para;</a></h2>
+<p>Dado el código del ejercicio anterior implemente la función "removeProduct" en la clase "ShoppingCart.java" permitiendo que cumplan las siguientes condiciones:</p>
+<ul>
+<li>No se puede eliminar un producto que no existe en el carrito.</li>
+<li>No se puede eliminar un producto con un número de unidades negativo o nulo.</li>
+</ul>
+<p>Además, al igual que en el ejercicio anterior, añada un mensaje de error descriptivo en cada una de las aserciones.</p>
+<h1 id="referencias">Referencias<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h1>
+<p><a href="https://docs.oracle.com/javase/8/docs/technotes/guides/language/assert.html">[1] Java documentación oficial.</a></p>
+<p><a href="https://cdn.ttgtmedia.com/searchDomino/downloads/CH07_0672326280.pdf">[2] Capítulo de libro Threads, Exceptions, and Assertions (java21days.com)</a></p>
                 
                   
                 
