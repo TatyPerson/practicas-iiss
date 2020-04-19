@@ -467,7 +467,7 @@
                   <a href="https://github.com/TatyPerson/practicas-iiss/edit/master/docs/oop-p4.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h0>Práctica 4: Aserciones</h0>
+                <h0>Práctica 4: Aserciones &amp; Uso de Null &amp; Optional</h0>
 <h1 id="repaso-de-conceptos-teoricos"><span style="color:blue">Repaso de conceptos teóricos</span><a class="headerlink" href="#repaso-de-conceptos-teoricos" title="Permanent link">&para;</a></h1>
 <h1 id="aserciones">Aserciones<a class="headerlink" href="#aserciones" title="Permanent link">&para;</a></h1>
 <p>Las aserciones son un método para aumentar la fiabilidad del código que se esta implementando. Las aserciones son expresiones que representan una condición que debe cumplirse en una parte específica del código. Si una aserción no se cumple, el programa generará un error en ese punto.</p>
@@ -510,6 +510,29 @@ En el ejemplo anterior se muestra un error generado donde no se ha especificado 
 </blockquote>
 <p>Posteriormente, en la pestaña "Arguments" se deben añadir las opciones "-ea" en "VM arguments", las cuales habilitarán el procesamiento de las aserciones en el proyecto.</p>
 <p>Finalmente, hacer click en el botón "Run" y el programa se ejecutará mostrando los errores existentes en las aserciones en el caso de que existan.</p>
+<h1 id="uso-de-null-optional">Uso de Null &amp; Optional<a class="headerlink" href="#uso-de-null-optional" title="Permanent link">&para;</a></h1>
+<p>En <a href="https://leanmind.es/es/blog/evitar-null-tambien-en-kotlin/">[3]</a> se describe algunas de las consecuencias del uso del valor <em>null</em> y los mecanismos que pueden ser utilizados para evitar su uso. En Java 8 se incorpora la clase "Optional", la cual puede ser utilizada también para evitar su uso.</p>
+<blockquote>
+<p>Optional is a container object used to contain not-null objects. Optional object is used to represent null with absent value. This class has various utility methods to facilitate code to handle values as ‘available’ or ‘not available’ instead of checking null values. It is introduced in Java 8 and is similar to what Optional is in Guava.
+-- <cite><a href="https://www.tutorialspoint.com/java8/java8_optional_class.htm">TutorialsPoint.com</a></cite></p>
+</blockquote>
+<p>A continuación, en el siguiente fragmento de código se muestra un ejemplo de uso indebido del valor <em>null</em>:</p>
+<p><div class="codehilite"><pre><span></span><code><span class="n">Album</span> <span class="n">album</span> <span class="o">=</span> <span class="n">getAlbum</span><span class="p">(</span><span class="s">&quot;Random Memory Access&quot;</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">album</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">album</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// Avisar al usuario de que no se ha encontrado el album</span>
+<span class="p">}</span>
+</code></pre></div>
+Por otro lado, en el siguiente fragmento de código se realiza el uso de la clase "Optional". En este caso, se evita la comparación de la variable "album" con el valor <em>null</em>, y se utiliza el método "isPresent" en su lugar.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Album</span><span class="o">&gt;</span> <span class="n">albumOptional</span> <span class="o">=</span> <span class="n">getAlbum</span><span class="p">(</span><span class="s">&quot;Random Memory Access&quot;</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">albumOptional</span><span class="p">.</span><span class="na">isPresent</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">albumOptional</span><span class="p">.</span><span class="na">get</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// Avisar al usuario de que no se ha encontrado el album</span>
+<span class="p">}</span>
+</code></pre></div>
+
 <h1 id="ejercicios-propuestos"><span style="color:blue">Ejercicios propuestos</span><a class="headerlink" href="#ejercicios-propuestos" title="Permanent link">&para;</a></h1>
 <h2 id="ejercicio-1">Ejercicio 1<a class="headerlink" href="#ejercicio-1" title="Permanent link">&para;</a></h2>
 <p>Dado los siguientes fragmentos de código responder a las siguientes preguntas:</p>
@@ -524,7 +547,13 @@ En el ejemplo anterior se muestra un error generado donde no se ha especificado 
 
     <span class="kd">public</span> <span class="nf">Product</span><span class="p">(</span><span class="kt">int</span> <span class="n">code</span><span class="p">,</span> <span class="n">String</span> <span class="n">name</span><span class="p">,</span> <span class="n">String</span> <span class="n">category</span><span class="p">,</span> <span class="kt">double</span> <span class="n">weight</span><span class="p">,</span> <span class="kt">double</span> <span class="n">height</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="na">code</span> <span class="o">=</span> <span class="n">code</span><span class="p">;</span>
-        <span class="k">this</span><span class="p">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="n">name</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">name</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+        <span class="p">}</span>
+
         <span class="k">this</span><span class="p">.</span><span class="na">category</span> <span class="o">=</span> <span class="n">category</span><span class="p">;</span>
         <span class="k">this</span><span class="p">.</span><span class="na">weight</span> <span class="o">=</span> <span class="n">weight</span><span class="p">;</span>
         <span class="k">this</span><span class="p">.</span><span class="na">height</span> <span class="o">=</span> <span class="n">height</span><span class="p">;</span>
@@ -608,7 +637,7 @@ En el ejemplo anterior se muestra un error generado donde no se ha especificado 
         <span class="n">Product</span> <span class="n">product1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;Product1&quot;</span><span class="p">,</span> <span class="s">&quot;Category1&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">);</span>
         <span class="n">Product</span> <span class="n">product2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">&quot;Product2&quot;</span><span class="p">,</span> <span class="s">&quot;Category2&quot;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.0</span><span class="p">);</span>
         <span class="n">Product</span> <span class="n">product3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">&quot;Product3&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">);</span>
-        <span class="n">Product</span> <span class="n">product4</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="s">&quot;Category4&quot;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">);</span>
+        <span class="n">Product</span> <span class="n">product4</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="s">&quot;Category4&quot;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">);</span>
         <span class="n">Product</span> <span class="n">product5</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s">&quot;Product5&quot;</span><span class="p">,</span> <span class="s">&quot;Caregory5&quot;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">);</span>
         <span class="n">Product</span> <span class="n">product6</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="s">&quot;Product6&quot;</span><span class="p">,</span> <span class="s">&quot;Caregory6&quot;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">);</span>
 
@@ -661,9 +690,12 @@ En el ejemplo anterior se muestra un error generado donde no se ha especificado 
 <li>No se puede eliminar un producto con un número de unidades negativo o nulo.</li>
 </ul>
 <p>Además, al igual que en el ejercicio anterior, añada un mensaje de error descriptivo en cada una de las aserciones.</p>
+<h2 id="ejercicio-3">Ejercicio 3<a class="headerlink" href="#ejercicio-3" title="Permanent link">&para;</a></h2>
+<p>Dado el código del ejercicio anterior, ¿existe uso indebido del valor <em>null</em>?. En caso afirmativo, reemplace su uso por el de la clase "Optional" en los casos en los que sea necesario.</p>
 <h1 id="referencias">Referencias<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h1>
 <p><a href="https://docs.oracle.com/javase/8/docs/technotes/guides/language/assert.html">[1] Java documentación oficial.</a></p>
 <p><a href="https://cdn.ttgtmedia.com/searchDomino/downloads/CH07_0672326280.pdf">[2] Capítulo de libro Threads, Exceptions, and Assertions (java21days.com)</a></p>
+<p><a href="https://leanmind.es/es/blog/evitar-null-tambien-en-kotlin/">[3] Blog Null, un viejo enemigo del lado oscuro.</a></p>
                 
                   
                 
