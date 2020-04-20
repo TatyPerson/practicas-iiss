@@ -547,12 +547,6 @@ Por otro lado, en el siguiente fragmento de código se realiza el uso de la clas
 
     <span class="kd">public</span> <span class="nf">Product</span><span class="p">(</span><span class="kt">int</span> <span class="n">code</span><span class="p">,</span> <span class="n">String</span> <span class="n">name</span><span class="p">,</span> <span class="n">String</span> <span class="n">category</span><span class="p">,</span> <span class="kt">double</span> <span class="n">weight</span><span class="p">,</span> <span class="kt">double</span> <span class="n">height</span><span class="p">)</span> <span class="p">{</span>
 
-        <span class="k">assert</span> <span class="n">code</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">:</span> <span class="s">&quot;Code must to be greater than 0&quot;</span><span class="p">;</span>
-        <span class="k">assert</span> <span class="o">!</span><span class="n">name</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">();</span>
-        <span class="k">assert</span> <span class="o">!</span><span class="n">category</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">();</span>
-        <span class="k">assert</span> <span class="n">weight</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="k">assert</span> <span class="n">height</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
-
         <span class="k">this</span><span class="p">.</span><span class="na">code</span> <span class="o">=</span> <span class="n">code</span><span class="p">;</span>
 
         <span class="k">if</span><span class="p">(</span><span class="n">name</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
