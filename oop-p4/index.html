@@ -546,12 +546,25 @@ Por otro lado, en el siguiente fragmento de código se realiza el uso de la clas
     <span class="kd">private</span> <span class="kt">double</span> <span class="n">height</span><span class="p">;</span>
 
     <span class="kd">public</span> <span class="nf">Product</span><span class="p">(</span><span class="kt">int</span> <span class="n">code</span><span class="p">,</span> <span class="n">String</span> <span class="n">name</span><span class="p">,</span> <span class="n">String</span> <span class="n">category</span><span class="p">,</span> <span class="kt">double</span> <span class="n">weight</span><span class="p">,</span> <span class="kt">double</span> <span class="n">height</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="k">assert</span> <span class="n">code</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">:</span> <span class="s">&quot;Code must to be greater than 0&quot;</span><span class="p">;</span>
+        <span class="k">assert</span> <span class="o">!</span><span class="n">name</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">();</span>
+        <span class="k">assert</span> <span class="o">!</span><span class="n">category</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">();</span>
+        <span class="k">assert</span> <span class="n">weight</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">assert</span> <span class="n">height</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
+
         <span class="k">this</span><span class="p">.</span><span class="na">code</span> <span class="o">=</span> <span class="n">code</span><span class="p">;</span>
 
         <span class="k">if</span><span class="p">(</span><span class="n">name</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">this</span><span class="p">.</span><span class="na">name</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
             <span class="k">this</span><span class="p">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="n">category</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">category</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">category</span> <span class="o">=</span> <span class="n">category</span><span class="p">;</span>
         <span class="p">}</span>
 
         <span class="k">this</span><span class="p">.</span><span class="na">category</span> <span class="o">=</span> <span class="n">category</span><span class="p">;</span>
@@ -616,6 +629,15 @@ Por otro lado, en el siguiente fragmento de código se realiza el uso de la clas
         <span class="p">}</span>
     <span class="p">}</span>
 
+    <span class="kd">public</span> <span class="n">Product</span> <span class="nf">removeProduct</span><span class="p">(</span><span class="n">Product</span> <span class="n">product</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">shoppingCart</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="n">product</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">shoppingCart</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">product</span><span class="p">);</span>
+            <span class="k">return</span> <span class="n">product</span><span class="p">;</span>
+        <span class="p">}</span>  <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">printShoppingCartContent</span><span class="p">()</span> <span class="p">{</span>
         <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;The shopping cart content is: &quot;</span><span class="p">);</span>
 
@@ -624,7 +646,6 @@ Por otro lado, en el siguiente fragmento de código se realiza el uso de la clas
         <span class="p">}</span>
 
     <span class="p">}</span>
-
 <span class="p">}</span>
 </code></pre></div>
 
@@ -636,7 +657,7 @@ Por otro lado, en el siguiente fragmento de código se realiza el uso de la clas
 
         <span class="n">Product</span> <span class="n">product1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;Product1&quot;</span><span class="p">,</span> <span class="s">&quot;Category1&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">);</span>
         <span class="n">Product</span> <span class="n">product2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">&quot;Product2&quot;</span><span class="p">,</span> <span class="s">&quot;Category2&quot;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.0</span><span class="p">);</span>
-        <span class="n">Product</span> <span class="n">product3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">&quot;Product3&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">);</span>
+        <span class="n">Product</span> <span class="n">product3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">&quot;Product3&quot;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">);</span>
         <span class="n">Product</span> <span class="n">product4</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="s">&quot;Category4&quot;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">);</span>
         <span class="n">Product</span> <span class="n">product5</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s">&quot;Product5&quot;</span><span class="p">,</span> <span class="s">&quot;Caregory5&quot;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">);</span>
         <span class="n">Product</span> <span class="n">product6</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Product</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="s">&quot;Product6&quot;</span><span class="p">,</span> <span class="s">&quot;Caregory6&quot;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">);</span>
@@ -649,9 +670,12 @@ Por otro lado, en el siguiente fragmento de código se realiza el uso de la clas
         <span class="n">shoppingCart</span><span class="p">.</span><span class="na">addProduct</span><span class="p">(</span><span class="n">product5</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
         <span class="n">shoppingCart</span><span class="p">.</span><span class="na">addProduct</span><span class="p">(</span><span class="n">product6</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
 
+        <span class="k">if</span><span class="p">(</span><span class="n">shoppingCart</span><span class="p">.</span><span class="na">removeProduct</span><span class="p">(</span><span class="n">product1</span><span class="p">)</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;The product has been successfully deleted.&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+
         <span class="n">shoppingCart</span><span class="p">.</span><span class="na">printShoppingCartContent</span><span class="p">();</span>
     <span class="p">}</span>
-
 <span class="p">}</span>
 </code></pre></div>
 
@@ -682,16 +706,10 @@ Por otro lado, en el siguiente fragmento de código se realiza el uso de la clas
 <p>b) En la clase "ShoppingCart.java":</p>
 <ul>
 <li>No se puede añadir un producto con un número de unidades negativo o nulo.</li>
+<li>No se puede eliminar un producto que no existe en el carrito.</li>
 </ul>
 <h2 id="ejercicio-2">Ejercicio 2<a class="headerlink" href="#ejercicio-2" title="Permanent link">&para;</a></h2>
-<p>Dado el código del ejercicio anterior implemente la función "removeProduct" en la clase "ShoppingCart.java" permitiendo que cumplan las siguientes condiciones:</p>
-<ul>
-<li>No se puede eliminar un producto que no existe en el carrito.</li>
-<li>No se puede eliminar un producto con un número de unidades negativo o nulo.</li>
-</ul>
-<p>Además, al igual que en el ejercicio anterior, añada un mensaje de error descriptivo en cada una de las aserciones.</p>
-<h2 id="ejercicio-3">Ejercicio 3<a class="headerlink" href="#ejercicio-3" title="Permanent link">&para;</a></h2>
-<p>Dado el código del ejercicio anterior, ¿existe uso indebido del valor <em>null</em>?. En caso afirmativo, reemplace su uso por el de la clase "Optional" en los casos en los que sea necesario.</p>
+<p>Dado el código del primer ejercicio, ¿existe algún uso indebido del valor <em>null</em>?. En caso afirmativo, reemplace su uso por el de la clase "Optional" en los casos en los que sea necesario.</p>
 <h1 id="referencias">Referencias<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h1>
 <p><a href="https://docs.oracle.com/javase/8/docs/technotes/guides/language/assert.html">[1] Java documentación oficial.</a></p>
 <p><a href="https://cdn.ttgtmedia.com/searchDomino/downloads/CH07_0672326280.pdf">[2] Capítulo de libro Threads, Exceptions, and Assertions (java21days.com)</a></p>
