@@ -77,7 +77,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#to-do" tabindex="0" class="md-skip">
+      <a href="#repaso-de-conceptos-teoricos" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -467,8 +467,256 @@
                   <a href="https://github.com/TatyPerson/practicas-iiss/edit/master/docs/fp-p1.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h0>Práctica 1</h0>
-<h1 id="to-do">TO DO<a class="headerlink" href="#to-do" title="Permanent link">&para;</a></h1>
+                <h0>Práctica 1: Anónimos &amp; Cierres</h0>
+<h1 id="repaso-de-conceptos-teoricos"><span style="color:blue">Repaso de conceptos teóricos</span><a class="headerlink" href="#repaso-de-conceptos-teoricos" title="Permanent link">&para;</a></h1>
+<h1 id="anonimos-expresiones-lambda">Anónimos (Expresiones Lambda)<a class="headerlink" href="#anonimos-expresiones-lambda" title="Permanent link">&para;</a></h1>
+<p>Una expresión <em>Lambda</em> es una función anónima o método abstracto, es decir, un método que sólo esta definido en la interfaz pero no se le ha dado ninguna implementación. Por este motivo, el programador puede aportarle la implementación que le resulte de interés en cada ocasión.</p>
+<blockquote>
+<p>In computer programming, an anonymous function (function literal, lambda abstraction, or lambda expression) is a function definition that is not bound to an identifier. Anonymous functions are often arguments being passed to higher-order functions, or used for constructing the result of a higher-order function that needs to return a function.[1] If the function is only used once, or a limited number of times, an anonymous function may be syntactically lighter than using a named function. Anonymous functions are ubiquitous in functional programming languages and other languages with first-class functions, where they fulfill the same role for the function type as literals do for other data types.</p>
+<p>-- <cite><a href="https://en.wikipedia.org/wiki/Anonymous_function">Wikipedia</a></cite></p>
+</blockquote>
+<p>A continuación, se incluye un ejemplo del recorrido de una lista con la sintaxis de POO tradicional:</p>
+<p><div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="p">(</span><span class="n">Integer</span> <span class="n">numero</span> <span class="p">:</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">numero</span> <span class="o">+</span> <span class="s">&quot; &quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+Por otro lado, a continuación se incluye la misma implementación, pero utilizando expresiones <em>Lambda</em>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">//Primera versión</span>
+<span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">).</span><span class="na">forEach</span><span class="p">(</span><span class="n">n</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="s">&quot; &quot;</span><span class="p">));</span>
+
+<span class="c1">//Segunda versión</span>
+<span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">).</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
+</code></pre></div>
+
+<p>En este caso, la función <em>forEach</em> acepta expresiones <em>Lambda</em> para poder configurar su comportamiento. En la primera versión, se imprimirá cada elemento (n) de la lista y posteriormente se añadirá un espacio. Por lo tanto, la salida del programa en consola sería:</p>
+<p><div class="codehilite"><pre><span></span><code><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span> <span class="mi">10</span>
+</code></pre></div>
+Por otro lado, en la segunda versión, se imprimirá cada elemento de la lista y se añadirá un salto de línea posteriormente. Por lo tanto, la salida del programa en este caso sería:</p>
+<div class="codehilite"><pre><span></span><code><span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+<span class="mi">5</span>
+<span class="mi">6</span>
+<span class="mi">7</span>
+<span class="mi">8</span>
+<span class="mi">9</span>
+<span class="mi">10</span>
+</code></pre></div>
+
+<h2 id="stream-api-recordatorio-de-practica-2-ampliacion">Stream API (recordatorio de Práctica 2 + ampliación)<a class="headerlink" href="#stream-api-recordatorio-de-practica-2-ampliacion" title="Permanent link">&para;</a></h2>
+<p>Un <em>stream</em> representa una secuencia de elementos que soportan diferentes tipos de operaciones que permiten realizar cálculos sobre ellos. Las posibles operaciones que se pueden realizar sobre un <em>stream</em> pueden ser intermediarias o terminales. Las operaciones intermediarias devuelven un nuevo <em>stream</em> permitiendo encadenar múltiples operaciones intermediarias sin usar punto y coma. Por otro lado, las operaciones terminales son nulas o devuelven un resultado de un tipo diferente, por ejemplo un tipo numérico.</p>
+<blockquote>
+<p><img alt="streams en Java 8" src="../figuras/streamEjemplo.png" /></p>
+<p><small>por <cite>Benjamin, <a href="https://winterbe.com/posts/2014/07/31/java8-stream-tutorial-examples/">Java 8 Stream Tutorial</a></cite></small></p>
+</blockquote>
+<p>En el ejemplo anterior, las operaciones <em>filter</em>, <em>map</em> y <em>sorted</em> son operaciones intermediarias, mientras que la operación <em>forEach</em> es una operación terminal.</p>
+<p>Más información: <a href="https://www.oracle.com/technetwork/es/articles/java/procesamiento-streams-java-se-8-2763402-esa.html">https://www.oracle.com/technetwork/es/articles/java/procesamiento-streams-java-se-8-2763402-esa.html</a></p>
+<p>Por otro lado, se puede observar que la mayoría de las operaciones que se aplican sobre <em>streams</em> aceptan algún tipo de parámetro en forma de <em>expresión lambda</em>, la cual es una interfaz funcional que especifica el comportamiento exacto de la operación. Estas operaciones no pueden modificar el contenido del <em>stream</em> original. En el ejemplo anterior, se puede observar que ninguna de las operaciones modifica la variable <em>myList</em> añadiendo o eliminando elementos, sólo se realiza el filtrado de los elementos que no empiezan por "c", se transforman a mayúsculas, se ordenan en orden alfabético y se imprimen por pantalla.</p>
+<p>Más información: <a href="https://www.oracle.com/technetwork/es/articles/java/expresiones-lambda-api-stream-java-2737544-esa.html">https://www.oracle.com/technetwork/es/articles/java/expresiones-lambda-api-stream-java-2737544-esa.html</a></p>
+<p>Finalmente, se incluye otro ejemplo del uso del Stream API en Java:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">mayores</span> <span class="o">=</span> <span class="p">(</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="p">)</span> <span class="n">Arrays</span>
+    <span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+    <span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="p">.</span><span class="na">collect</span><span class="p">(</span>
+    <span class="n">Collectors</span><span class="p">.</span><span class="na">toCollection</span><span class="p">(()</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="p">()));</span>
+
+<span class="n">mayores</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">));</span>
+</code></pre></div>
+
+<p>En este caso, en el ejemplo anterior se realiza el filtrado de los números que sean mayores que 5 y posteriormente, se imprimen por pantalla los elementos de la lista. Por lo tanto, la salida del programa por consola en este caso sería:</p>
+<div class="codehilite"><pre><span></span><code><span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+<span class="mi">5</span>
+</code></pre></div>
+
+<h1 id="cierres-closure">Cierres (Closure)<a class="headerlink" href="#cierres-closure" title="Permanent link">&para;</a></h1>
+<p>Cuando se realiza la declaración de una variable local, esa variable tiene un alcance local. Es decir, la definición de estas variables sólo existen dentro del bloque o función dónde se ha realizado su declaración.</p>
+<p>Por ejemplo:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">int</span> <span class="nf">suma</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">suma</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">suma</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">sumaDoble</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">suma</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b</span><span class="o">+</span><span class="mi">2</span><span class="p">;</span> <span class="c1">//falla</span>
+    <span class="k">return</span> <span class="n">suma</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>En este caso, en la primera función se realiza la asignación de la suma de las variables <em>a</em> y <em>b</em> a una variable local <em>suma</em> y posteriormente, se devuelve el valor de esta variable. En la segunda función, se realiza el mismo procedimiento que en la primera función pero realizando la suma de los dobles de las variables <em>a</em> y <em>b</em>. El problema en esta función, es que se usa la variable local definida en la primera función, la cual no esta definida fuera de su ámbito y resultaría en un error de compilación. Para solventarlo, se tendría que definir la variable local <em>suma</em> también en la segunda función.</p>
+<p>Sin embargo, el uso de los cierres (<em>closures</em>) permiten encapsular funciones completas (incluyendo sus variables locales) en otra variable, permitiendo su uso en diferentes lugares del programa.</p>
+<blockquote>
+<p>Closures are nothing but stateful functions! A few definitions from the web include:</p>
+<ul>
+<li>A closure is a combination of a function bundled together (enclosed) with references to its surrounding state.</li>
+<li>A closure gives you access to an outer function’s scope from an inner function.</li>
+</ul>
+<p>Uses of Closures include data privacy, partial application &amp; currying.</p>
+<p>-- <cite><a href="https://medium.com/@rmanavalan/5-ways-to-implement-closures-in-java-8-590790659ac5">Ramkumar Manavalan</a></cite></p>
+</blockquote>
+<p>Por ejemplo:</p>
+<div class="codehilite"><pre><span></span><code><span class="nd">@FunctionalInterface</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">NumToTextConverter</span> <span class="p">{</span>
+    <span class="n">String</span> <span class="nf">convert</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">static</span> <span class="kt">void</span> <span class="nf">closureTypeDemo</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">NumToTextConverter</span> <span class="n">textOfWeekDay</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NumToTextConverter</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">String</span> <span class="o">[]</span> <span class="n">weeks</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;Mon&quot;</span><span class="p">,</span> <span class="s">&quot;Tue&quot;</span><span class="p">,</span> <span class="s">&quot;Wed&quot;</span><span class="p">,</span> <span class="s">&quot;Thu&quot;</span><span class="p">,</span> <span class="s">&quot;Fri&quot;</span><span class="p">,</span> <span class="s">&quot;Sat&quot;</span><span class="p">,</span> <span class="s">&quot;Sun&quot;</span><span class="p">};</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="n">String</span> <span class="nf">convert</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">num</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">num</span> <span class="o">&lt;=</span> <span class="n">weeks</span><span class="p">.</span><span class="na">length</span><span class="p">)</span> <span class="o">?</span> <span class="n">weeks</span><span class="o">[</span><span class="n">num</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span> <span class="p">:</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">};</span>
+    <span class="p">};</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">textOfWeekDay</span><span class="p">.</span><span class="na">convert</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>En este caso, la variable <em>textOfWeekDay</em> puede considerarse un cierre (<em>closure</em>), ya que agrupa la definición de la función <em>convert</em>, y además, los datos de los días de la semana (privados, pero accesibles desde la función de conversión). </p>
+<p>Finalmente, la salida del programa anterior sería <em>Mon</em>, ya que la función <em>convert</em> devolvería la primera posición del array <em>weeks</em>.</p>
+<h1 id="ejercicios-propuestos"><span style="color:blue">Ejercicios propuestos</span><a class="headerlink" href="#ejercicios-propuestos" title="Permanent link">&para;</a></h1>
+<h2 id="ejercicio-1">Ejercicio 1<a class="headerlink" href="#ejercicio-1" title="Permanent link">&para;</a></h2>
+<p>Dado los siguientes fragmentos de código responder a las siguientes preguntas:</p>
+<h3 id="dataoperationsjava">DataOperations.java<a class="headerlink" href="#dataoperationsjava" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">DataOperations</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">print</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="p">);</span>
+    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">filterPairs</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="dataoperationsimpljava">DataOperationsImpl.java<a class="headerlink" href="#dataoperationsimpljava" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DataOperationsImpl</span> <span class="kd">implements</span> <span class="n">DataOperations</span> <span class="p">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">print</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">element</span><span class="p">:</span> <span class="n">data</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">element</span> <span class="o">+</span> <span class="s">&quot;, &quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">filterPairs</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">dataAux</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">data</span><span class="p">.</span><span class="na">length</span><span class="o">]</span><span class="p">;</span>
+
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">element</span><span class="p">:</span> <span class="n">data</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">((</span><span class="n">element</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">dataAux</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">element</span><span class="p">;</span>
+                <span class="n">index</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">dataAux</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="mainjava">Main.java<a class="headerlink" href="#mainjava" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="kt">int</span> <span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">};</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;data = &quot;</span> <span class="o">+</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">data</span><span class="p">));</span>
+
+        <span class="n">DataOperations</span> <span class="n">operations</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DataOperationsImpl</span><span class="p">();</span>
+
+        <span class="n">operations</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">operations</span><span class="p">.</span><span class="na">filterPairs</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+
+        <span class="n">operations</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="preguntas-propuestas">Preguntas propuestas<a class="headerlink" href="#preguntas-propuestas" title="Permanent link">&para;</a></h3>
+<p>a) Utilice el uso de expresiones <em>Lambda</em> + Stream API para transformar la implementación de las operaciones del API "DataOperations" a la sintaxis de programación funcional.</p>
+<p>b) Además, haciendo uso de expresiones <em>Labmda</em> + Stream API añada al API "DataOperations" la implementación de las siguientes operaciones:</p>
+<ul>
+<li>Operación que devuelva la lista de números ordenada descendentemente.</li>
+<li>Operación que multiplique todos los números de la lista por 10 e imprima el resultado.</li>
+<li>Operación que devuelva el resultado de la suma de todos los números de la lista.</li>
+</ul>
+<h2 id="ejercicio-2">Ejercicio 2<a class="headerlink" href="#ejercicio-2" title="Permanent link">&para;</a></h2>
+<p>Dado los siguientes fragmentos de código responder a las siguientes preguntas:</p>
+<h3 id="datasorterjava">DataSorter.java<a class="headerlink" href="#datasorterjava" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">DataSorter</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">sort</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">data</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="datasorterascjava">DataSorterAsc.java<a class="headerlink" href="#datasorterascjava" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DataSorterAsc</span> <span class="kd">implements</span> <span class="n">DataSorter</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">sort</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">data</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="datasorterdescjava">DataSorterDesc.java<a class="headerlink" href="#datasorterdescjava" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Collections</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DataSorterDesc</span> <span class="kd">implements</span> <span class="n">DataSorter</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">sort</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Collections</span><span class="p">.</span><span class="na">reverseOrder</span><span class="p">());</span>
+        <span class="k">return</span> <span class="n">data</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="mainjava_1">Main.java<a class="headerlink" href="#mainjava_1" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="n">String</span> <span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;H&quot;</span><span class="p">,</span> <span class="s">&quot;S&quot;</span><span class="p">,</span> <span class="s">&quot;I&quot;</span><span class="p">,</span> <span class="s">&quot;V&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;W&quot;</span><span class="p">,</span> <span class="s">&quot;M&quot;</span><span class="p">,</span> <span class="s">&quot;P&quot;</span><span class="p">,</span> <span class="s">&quot;L&quot;</span><span class="p">,</span>  <span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;N&quot;</span><span class="p">,</span> <span class="s">&quot;K&quot;</span><span class="p">,</span>
+                 <span class="s">&quot;O&quot;</span><span class="p">,</span> <span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;Q&quot;</span><span class="p">,</span> <span class="s">&quot;R&quot;</span><span class="p">,</span> <span class="s">&quot;J&quot;</span><span class="p">,</span> <span class="s">&quot;D&quot;</span><span class="p">,</span> <span class="s">&quot;G&quot;</span><span class="p">,</span> <span class="s">&quot;T&quot;</span><span class="p">,</span> <span class="s">&quot;U&quot;</span><span class="p">,</span> <span class="s">&quot;X&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;Y&quot;</span><span class="p">,</span> <span class="s">&quot;Z&quot;</span><span class="p">,</span> <span class="s">&quot;F&quot;</span><span class="p">};</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;data = &quot;</span> <span class="o">+</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">data</span><span class="p">));</span>
+
+        <span class="n">DataSorter</span> <span class="n">dataSorter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DataSorterDesc</span><span class="p">();</span>
+
+        <span class="n">dataSorter</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;data (desc) = &quot;</span> <span class="o">+</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">data</span><span class="p">));</span>
+
+        <span class="n">dataSorter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DataSorterAsc</span><span class="p">();</span>
+
+        <span class="n">dataSorter</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;data (asc) = &quot;</span> <span class="o">+</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">data</span><span class="p">));</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="preguntas-propuestas_1">Preguntas propuestas<a class="headerlink" href="#preguntas-propuestas_1" title="Permanent link">&para;</a></h3>
+<p>a) Utilice el uso de cierres (<em>closures</em>) para transformar la implementación de las clases <em>DataSorterAsc</em> y <em>DataSorterDesc</em> a la sintaxis de la programación funcional.</p>
+<p>b) Añada una tercera transformación haciendo uso de cierres (<em>closures</em>) de una clase que realice la ordenación aleatoria de los elementos, siguiendo el mismo enfoque que el que ha seguido con las clases <em>DataSorterAsc</em> y <em>DataSorterDesc</em> en el apartado anterior.</p>
+<h1 id="referencias">Referencias<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h1>
+<p><a href="https://en.wikipedia.org/wiki/Anonymous_function">[1] Definición de función anónima.</a></p>
+<p><a href="https://winterbe.com/posts/2014/07/31/java8-stream-tutorial-examples/">[2] Blog Java 8 Stream Tutorial.</a></p>
+<p><a href="https://www.oracle.com/technetwork/es/articles/java/procesamiento-streams-java-se-8-2763402-esa.html">[3] API Java Streams.</a></p>
+<p><a href="https://www.oracle.com/technetwork/es/articles/java/expresiones-lambda-api-stream-java-2737544-esa.html">[4] API Java Funciones Lambda + Streams.</a></p>
+<p><a href="https://medium.com/@rmanavalan/5-ways-to-implement-closures-in-java-8-590790659ac5">[5] Blog Closures in Java.</a></p>
                 
                   
                 
