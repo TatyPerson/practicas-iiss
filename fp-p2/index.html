@@ -77,7 +77,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#to-do" tabindex="0" class="md-skip">
+      <a href="#repaso-de-conceptos-teoricos" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -467,8 +467,274 @@
                   <a href="https://github.com/TatyPerson/practicas-iiss/edit/master/docs/fp-p2.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h0>Práctica 2</h0>
-<h1 id="to-do">TO DO<a class="headerlink" href="#to-do" title="Permanent link">&para;</a></h1>
+                <h0>Práctica 2: Retrollamadas</h0>
+<h1 id="repaso-de-conceptos-teoricos"><span style="color:blue">Repaso de conceptos teóricos</span><a class="headerlink" href="#repaso-de-conceptos-teoricos" title="Permanent link">&para;</a></h1>
+<h1 id="programacion-asincrona-en-java">Programación asíncrona en Java<a class="headerlink" href="#programacion-asincrona-en-java" title="Permanent link">&para;</a></h1>
+<p>En Java 5 se añadió la interfaz <code>Future</code> para integrar la programación asíncrona. Pero, esta interfaz no proporcionaba la posibilidad de combinar los resultados obtenidos al aplicar diferentes operaciones o manejar los posibles errores. Por este motivo, en Java 8 se incluyó la clase <code>CompletableFuture</code>, junto a la interfaz <code>Future</code>, la cual implementa también la interfaz <code>CompletionStage</code>. Esta interfaz incluye el contrato de operaciones para incluir la combinación de resultados procedentes de diferentes operaciones. </p>
+<p>En las secciones posteriores se verán algunos de los usos propuestos por esta interfaz en Java 8.</p>
+<h2 id="completablefuture-como-simple-future">CompletableFuture como (simple) Future<a class="headerlink" href="#completablefuture-como-simple-future" title="Permanent link">&para;</a></h2>
+<p>A continuación se muestra un ejemplo de uso de la clase <code>CompletableFuture</code>:</p>
+<h3 id="mainjava">Main.java<a class="headerlink" href="#mainjava" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.util.concurrent.ExecutionException</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.Future</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span><span class="p">,</span> <span class="n">ExecutionException</span> <span class="p">{</span>
+        <span class="n">Future</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">completableFuture</span> <span class="o">=</span> <span class="n">AsynchronousAPI</span><span class="p">.</span><span class="na">helloWorldAsync</span><span class="p">();</span>
+        <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">completableFuture</span><span class="p">.</span><span class="na">get</span><span class="p">();</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;The result is &quot;</span> <span class="o">+</span> <span class="n">result</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="asynchronousapijava">AsynchronousAPI.java<a class="headerlink" href="#asynchronousapijava" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.util.concurrent.CompletableFuture</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.Executors</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.Future</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AsynchronousAPI</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Future</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">helloWorldAsync</span><span class="p">()</span> <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="p">{</span>
+        <span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">completableFuture</span> 
+          <span class="o">=</span> <span class="k">new</span> <span class="n">CompletableFuture</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+
+        <span class="n">Executors</span><span class="p">.</span><span class="na">newCachedThreadPool</span><span class="p">().</span><span class="na">submit</span><span class="p">(()</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+            <span class="n">completableFuture</span><span class="p">.</span><span class="na">complete</span><span class="p">(</span><span class="s">&quot;Hello world&quot;</span><span class="p">);</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">});</span>
+
+        <span class="k">return</span> <span class="n">completableFuture</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>En primer lugar, en la función <code>main</code> se obtiene la variable <code>completableFuture</code>, la cual es de tipo <code>Future&lt;String&gt;</code>, esta variable obtendrá su valor cuando la función <code>helloWorldAsync()</code> se resuelva. A tráves de la operación <code>completableFuture.get()</code> se obtiene el resultado de la función y posteriormente, se muestra en consola. Por otro lado, el comportamiento de la función <code>helloWorldAsync</code>se basa en el uso de la operación <code>submit()</code> de <code>Executors.newCachedThreadPool()</code>, la cual crea un nuevo hilo que se suspende durante 10 segundos para añadir un retardo temporal y posteriormente completa la operación con el valor <code>Hello world</code>. En este caso, cuando finalice el procesamiento del programa se mostrará por consola el mensaje <code>The result is Hello world</code>.</p>
+<h2 id="procesamiento-de-resultados-asincronos">Procesamiento de resultados asíncronos<a class="headerlink" href="#procesamiento-de-resultados-asincronos" title="Permanent link">&para;</a></h2>
+<p>A continuación, se muestra un ejemplo del uso del resutado devuelto en un <code>CompletableFuture</code> desde otra variable del mismo tipo:</p>
+<h3 id="mainjava_1">Main.java<a class="headerlink" href="#mainjava_1" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.util.concurrent.CompletableFuture</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.ExecutionException</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span><span class="p">,</span> <span class="n">ExecutionException</span> <span class="p">{</span>
+
+        <span class="c1">//Then apply</span>
+        <span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">completableFuture</span> <span class="o">=</span> <span class="n">AsynchronousAPI</span><span class="p">.</span><span class="na">helloWorldAsync</span><span class="p">();</span>
+        <span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">future</span> <span class="o">=</span> <span class="n">completableFuture</span><span class="p">.</span><span class="na">thenApply</span><span class="p">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span> <span class="o">+</span> <span class="s">&quot; world&quot;</span><span class="p">);</span>
+        <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">future</span><span class="p">.</span><span class="na">get</span><span class="p">();</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+
+        <span class="c1">//Then accept</span>
+        <span class="n">completableFuture</span> <span class="o">=</span> <span class="n">AsynchronousAPI</span><span class="p">.</span><span class="na">helloWorldAsync</span><span class="p">();</span>
+        <span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">&gt;</span> <span class="n">futureVoid</span> <span class="o">=</span> <span class="n">completableFuture</span><span class="p">.</span><span class="na">thenAccept</span><span class="p">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">s</span> <span class="o">+</span> <span class="s">&quot; world&quot;</span><span class="p">));</span>
+        <span class="n">futureVoid</span><span class="p">.</span><span class="na">get</span><span class="p">();</span>
+
+        <span class="c1">//Then run</span>
+        <span class="n">completableFuture</span> <span class="o">=</span> <span class="n">AsynchronousAPI</span><span class="p">.</span><span class="na">helloWorldAsync</span><span class="p">();</span>
+        <span class="n">futureVoid</span> <span class="o">=</span> <span class="n">completableFuture</span><span class="p">.</span><span class="na">thenRun</span><span class="p">(()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span> <span class="s">&quot;world&quot;</span><span class="p">));</span>
+        <span class="n">futureVoid</span><span class="p">.</span><span class="na">get</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="asynchronousapijava_1">AsynchronousAPI.java<a class="headerlink" href="#asynchronousapijava_1" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.util.concurrent.CompletableFuture</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.Executors</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.Future</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AsynchronousAPI</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">helloWorldAsync</span><span class="p">()</span> <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="p">{</span>
+        <span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">completableFuture</span> 
+          <span class="o">=</span> <span class="k">new</span> <span class="n">CompletableFuture</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+
+        <span class="n">Executors</span><span class="p">.</span><span class="na">newCachedThreadPool</span><span class="p">().</span><span class="na">submit</span><span class="p">(()</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+            <span class="n">completableFuture</span><span class="p">.</span><span class="na">complete</span><span class="p">(</span><span class="s">&quot;Hello&quot;</span><span class="p">);</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">});</span>
+
+        <span class="k">return</span> <span class="n">completableFuture</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+
+<p>En este caso, la función <code>helloWorldAsync</code> realiza el mismo comportamiento que en el ejemplo anterior, únicamente con la diferencia de que devuelve <code>Hello</code> y no <code>Hello world</code> completo como en el ejemplo anterior. Por otro lado, en la función <code>main</code> se utilizan tres funciones de la clase <code>CompletableFuture</code>, a continuación se detalla el comportamiento de cada una de ellas:</p>
+<ul>
+<li>
+<p><code>thenApply()</code>: La variable <code>future</code> espera el resultado de la resolución de la variable <code>completableFuture</code>, en este caso, espera un resultado de tipo <code>String</code>. Finalmente, concatena a ese resultado la palabra <code>world</code> y obtiene el valor completo de la cadena en su resolución, es decir <code>Hello world</code>.</p>
+</li>
+<li>
+<p><code>thenAccept()</code>: La variable <code>futureVoid</code>espera el resultado de la resolución de la variable <code>completableFuture</code>, como en el caso anterior. La diferencia es que la variable <code>futureVoid</code> no podrá devolver un resultado de tipo <code>String</code> en su resolución, si no que será de tipo <code>Void</code>. Por este motivo, se lanzará directamente la función <code>System.out.println</code> en la resolución de la variable <code>futureVoid</code>.</p>
+</li>
+<li>
+<p><code>thenRun()</code>: La variable <code>futureVoid</code> en este caso no espera ningún resultado, sólo espera la resolución de la variable <code>completableFuture</code>. Como en el caso anterior, la variable <code>futureVoid</code> lanzará directamente la función <code>System.out.println</code> en su resolución, pero no concatenará el resultado de la variable <code>completableFuture</code>, mostrando únicamente la palabra <code>world</code>.</p>
+</li>
+</ul>
+<h2 id="combinacion-de-futures">Combinación de Futures<a class="headerlink" href="#combinacion-de-futures" title="Permanent link">&para;</a></h2>
+<p>A continuación, se muestra varios fragmentos de código que ilustran la forma de combinar varios resultados procedentes de diferentes variables de tipo <code>CompletableFuture</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">completableFuture</span> 
+  <span class="o">=</span> <span class="n">CompletableFuture</span><span class="p">.</span><span class="na">supplyAsync</span><span class="p">(()</span> <span class="o">-&gt;</span> <span class="s">&quot;Hello&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="na">thenCompose</span><span class="p">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">CompletableFuture</span><span class="p">.</span><span class="na">supplyAsync</span><span class="p">(()</span> <span class="o">-&gt;</span> <span class="n">s</span> <span class="o">+</span> <span class="s">&quot; World&quot;</span><span class="p">));</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">completableFuture</span> 
+  <span class="o">=</span> <span class="n">CompletableFuture</span><span class="p">.</span><span class="na">supplyAsync</span><span class="p">(()</span> <span class="o">-&gt;</span> <span class="s">&quot;Hello&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="na">thenCombine</span><span class="p">(</span><span class="n">CompletableFuture</span><span class="p">.</span><span class="na">supplyAsync</span><span class="p">(</span>
+      <span class="p">()</span> <span class="o">-&gt;</span> <span class="s">&quot; World&quot;</span><span class="p">),</span> <span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">s1</span> <span class="o">+</span> <span class="n">s2</span><span class="p">));</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">CompletableFuture</span> <span class="n">future</span> <span class="o">=</span> <span class="n">CompletableFuture</span><span class="p">.</span><span class="na">supplyAsync</span><span class="p">(()</span> <span class="o">-&gt;</span> <span class="s">&quot;Hello&quot;</span><span class="p">)</span>
+  <span class="p">.</span><span class="na">thenAcceptBoth</span><span class="p">(</span><span class="n">CompletableFuture</span><span class="p">.</span><span class="na">supplyAsync</span><span class="p">(()</span> <span class="o">-&gt;</span> <span class="s">&quot; World&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">s1</span> <span class="o">+</span> <span class="n">s2</span><span class="p">));</span>
+</code></pre></div>
+
+<p>Tal y como en la sección anterior se utilizan tres funciones de la clase <code>CompletableFuture</code> para combinar los resultados, a continuación se detalla el comportamiento de cada una de ellas:</p>
+<ul>
+<li>
+<p><code>thenCompose()</code>: Esta función permite "concatenar" el resultado de una variable <code>CompletableFuture</code> en otra una vez que haya finalizado su procesamiento. En este caso, la ejecución de los <code>CompletableFuture</code> no es independiente, si no que se encadenan de forma secuencial.</p>
+</li>
+<li>
+<p><code>thenCombine()</code>: Esta función permite ejecutar los <code>CompletableFuture</code> de forma independiente y posteriormente, combinar los resultados en la variable <code>CompletableFuture</code> resultante (future).</p>
+</li>
+<li>
+<p><code>thenAcceptBoth()</code>: Esta función realiza el mismo procesamiento que <code>thenCombine()</code>, pero con la diferencia que la variable <code>CompletableFuture</code> resultante (future) es de tipo <code>Void</code> y realiza una acción, en este caso, invoca a la función <code>System.out.println</code>.</p>
+</li>
+</ul>
+<h2 id="ejecucion-de-futures-en-paralelo">Ejecución de Futures en paralelo<a class="headerlink" href="#ejecucion-de-futures-en-paralelo" title="Permanent link">&para;</a></h2>
+<p>A continuación, se muestra un fragmento de código que ilustra la forma de combinar varios resultados procedentes de diferentes variables de tipo <code>CompletableFuture</code>, cómo en la sección anterior, pero realizando su procesamiento en paralelo:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">future1</span>  
+  <span class="o">=</span> <span class="n">CompletableFuture</span><span class="p">.</span><span class="na">supplyAsync</span><span class="p">(()</span> <span class="o">-&gt;</span> <span class="s">&quot;Hello&quot;</span><span class="p">);</span>
+<span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">future2</span>  
+  <span class="o">=</span> <span class="n">CompletableFuture</span><span class="p">.</span><span class="na">supplyAsync</span><span class="p">(()</span> <span class="o">-&gt;</span> <span class="s">&quot;Beautiful&quot;</span><span class="p">);</span>
+<span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">future3</span>  
+  <span class="o">=</span> <span class="n">CompletableFuture</span><span class="p">.</span><span class="na">supplyAsync</span><span class="p">(()</span> <span class="o">-&gt;</span> <span class="s">&quot;World&quot;</span><span class="p">);</span>
+
+<span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">&gt;</span> <span class="n">combinedFuture</span> 
+  <span class="o">=</span> <span class="n">CompletableFuture</span><span class="p">.</span><span class="na">allOf</span><span class="p">(</span><span class="n">future1</span><span class="p">,</span> <span class="n">future2</span><span class="p">,</span> <span class="n">future3</span><span class="p">);</span>
+
+<span class="c1">// ...</span>
+
+<span class="n">combinedFuture</span><span class="p">.</span><span class="na">get</span><span class="p">();</span>
+</code></pre></div>
+
+<p>En este caso, hay que tener en cuenta que el resultado de la función <code>allOf</code> de la clase <code>CompletableFuture</code> es de tipo <code>Void</code>, y por tanto, una limitación de este método es que no se pueden combinar los resultados de las variables <code>future1</code>,<code>future2</code> y <code>future3</code>.</p>
+<p>No obstante, haciendo uso del API para Streams de Java 8 se puede solventar este problema:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">String</span> <span class="n">combined</span> <span class="o">=</span> <span class="n">Stream</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">future1</span><span class="p">,</span> <span class="n">future2</span><span class="p">,</span> <span class="n">future3</span><span class="p">)</span>
+  <span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">CompletableFuture</span><span class="p">::</span><span class="n">join</span><span class="p">)</span>
+  <span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">joining</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">));</span>
+</code></pre></div>
+
+<h1 id="ejercicios-propuestos"><span style="color:blue">Ejercicios propuestos</span><a class="headerlink" href="#ejercicios-propuestos" title="Permanent link">&para;</a></h1>
+<h2 id="ejercicio-1">Ejercicio 1<a class="headerlink" href="#ejercicio-1" title="Permanent link">&para;</a></h2>
+<p>Dado los siguientes fragmentos de código responder a las siguientes preguntas:</p>
+<h3 id="asynchronousapijava_2">AsynchronousAPI.java<a class="headerlink" href="#asynchronousapijava_2" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.util.List</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.CompletableFuture</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.Executors</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.Future</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AsynchronousAPI</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Future</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">additionAsync</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">elements</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="p">{</span>
+        <span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">completableFuture</span> 
+          <span class="o">=</span> <span class="k">new</span> <span class="n">CompletableFuture</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+
+        <span class="n">Executors</span><span class="p">.</span><span class="na">newCachedThreadPool</span><span class="p">().</span><span class="na">submit</span><span class="p">(()</span> <span class="o">-&gt;</span> <span class="p">{</span>
+        <span class="c1">//TO-DO</span>
+        <span class="p">});</span>
+
+        <span class="k">return</span> <span class="n">completableFuture</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="mainjava_2">Main.java<a class="headerlink" href="#mainjava_2" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.ExecutionException</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.Future</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span><span class="p">,</span> <span class="n">ExecutionException</span> <span class="p">{</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">elements</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+        <span class="n">Future</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">completableFuture</span> <span class="o">=</span> <span class="c1">//TO-DO;</span>
+        <span class="n">Integer</span> <span class="n">result</span> <span class="o">=</span> <span class="c1">//TO-DO;</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;The result is &quot;</span> <span class="o">+</span> <span class="n">result</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="preguntas-propuestas">Preguntas propuestas<a class="headerlink" href="#preguntas-propuestas" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Complete las secciones TO-DO de las clases AsynchronousAPI y Main, teniendo en cuenta:</li>
+</ol>
+<ul>
+<li>El método <code>additionAsync</code> debe devolver la suma de todos los números contenidos en <code>elements</code>.</li>
+<li>El método <code>additionAsync</code> debe mostrar por consola cada uno de los elementos que esta sumando con el mensaje <code>Adding (element)</code>.</li>
+<li>El método <code>additionAsync</code> debe añadir un retardo de 5 segundos en la suma de cada elemento.</li>
+<li>En la función <code>main</code> se debe mostrar en consola el resultado de la suma completa con el mensaje <code>The result is (result)</code>.</li>
+</ul>
+<h2 id="ejercicio-2">Ejercicio 2<a class="headerlink" href="#ejercicio-2" title="Permanent link">&para;</a></h2>
+<p>Dado los siguientes fragmentos de código responder a las siguientes preguntas:</p>
+<h3 id="asynchronousapijava_3">AsynchronousAPI.java<a class="headerlink" href="#asynchronousapijava_3" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.util.List</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.CompletableFuture</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.Executors</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AsynchronousAPI</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">additionAsync</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">elements</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="p">{</span>
+     <span class="c1">//TO-DO</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">mutiplicationAsync</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">elements</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="p">{</span>
+    <span class="c1">//TO-DO</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="mainjava_3">Main.java<a class="headerlink" href="#mainjava_3" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.CompletableFuture</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.ExecutionException</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span><span class="p">,</span> <span class="n">ExecutionException</span> <span class="p">{</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">elements</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">elements2</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+        <span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">&gt;</span> <span class="n">completableFuture</span> <span class="o">=</span> <span class="c1">//TO-DO;</span>
+
+        <span class="n">completableFuture</span><span class="p">.</span><span class="na">get</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="preguntas-propuestas_1">Preguntas propuestas<a class="headerlink" href="#preguntas-propuestas_1" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Complete las secciones TO-DO de las clases AsynchronousAPI y Main, teniendo en cuenta:</li>
+</ol>
+<ul>
+<li>El método <code>additionAsync</code> debe devolver la suma de todos los números contenidos en <code>elements</code>.</li>
+<li>El método <code>additionAsync</code> debe mostrar por consola cada uno de los elementos que esta sumando con el mensaje <code>Adding (element)</code>.</li>
+<li>El método <code>additionAsync</code> debe añadir un retardo de 2 segundos en la suma de cada elemento.</li>
+<li>El método <code>additionAsync</code> debe devolver la producto de todos los números contenidos en <code>elements2</code>.</li>
+<li>El método <code>additionAsync</code> debe mostrar por consola cada uno de los elementos que esta multiplicando con el mensaje <code>Multiplying (element)</code>.</li>
+<li>El método <code>additionAsync</code> debe añadir un retardo de 3 segundos en el producto de cada elemento.</li>
+<li>En la función <code>main</code> se debe mostrar en consola el resultado de la suma completa con el mensaje <code>The result is (result)</code>. Este mensaje debe ser mostrado de forma directa cuando se complete el resultado de la variable <code>completableFuture</code>.</li>
+</ul>
+<ol start="2">
+<li>Modifique el código de la clase Main para que el procesamiento se realice en paralelo y se obtenga el mismo resultado por consola que en el apartado anterior.</li>
+</ol>
+<h1 id="referencias">Referencias<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h1>
+<p><a href="https://www.baeldung.com/java-completablefuture">[1] Blog Guide to CompletableFuture.</a></p>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html">[2] CompletableFuture API Java 8.</a></p>
                 
                   
                 
