@@ -424,16 +424,18 @@
 <h1 id="stream-api-en-java">Stream API en Java<a class="headerlink" href="#stream-api-en-java" title="Permanent link">&para;</a></h1>
 <h2 id="definicion-de-stream-procedente-de-practicas-anteriores">Definición de Stream procedente de prácticas anteriores<a class="headerlink" href="#definicion-de-stream-procedente-de-practicas-anteriores" title="Permanent link">&para;</a></h2>
 <p>Un <em>stream</em> representa una secuencia de elementos que soportan diferentes tipos de operaciones para realizar cálculos sobre ellos.</p>
-<p>Las posibles operaciones que se pueden realizar sobre un <em>stream</em> pueden ser <em>intermediarias</em> o <em>terminales</em>.
-- Las operaciones intermediarias devuelven un nuevo <em>stream</em>, permitiendo encadenar múltiples operaciones intermediarias sin usar punto y coma.
-- Por otro lado, las operaciones terminales son nulas o devuelven un resultado de un tipo diferente, por ejemplo un tipo numérico.</p>
+<p>Las posibles operaciones que se pueden realizar sobre un <em>stream</em> pueden ser <em>intermediarias</em> o <em>terminales</em>.</p>
+<ul>
+<li>Las operaciones intermediarias devuelven un nuevo <em>stream</em>, permitiendo encadenar múltiples operaciones intermediarias sin usar punto y coma.</li>
+<li>Por otro lado, las operaciones terminales son nulas o devuelven un resultado de un tipo diferente, por ejemplo un tipo numérico.</li>
+</ul>
 <blockquote>
 <p><img alt="streams en Java 8" src="../figuras/streamEjemplo.png" /></p>
 <p><small>por <cite>Benjamin, <a href="https://winterbe.com/posts/2014/07/31/java8-stream-tutorial-examples/">Java 8 Stream Tutorial</a></cite></small></p>
 </blockquote>
 <p>En el ejemplo anterior, las operaciones <code>filter</code>, <code>map</code> y <code>sorted</code> son operaciones intermediarias, mientras que la operación <code>forEach</code> es una operación terminal.</p>
 <p>Más información: <a href="https://www.oracle.com/technetwork/es/articles/java/procesamiento-streams-java-se-8-2763402-esa.html">https://www.oracle.com/technetwork/es/articles/java/procesamiento-streams-java-se-8-2763402-esa.html</a></p>
-<p>Por otro lado, se puede observar que la mayoría de las operaciones que se aplican sobre <em>streams</em> aceptan algún tipo de parámetro en forma de <em>expresión lambda</em>, que es una interfaz funcional que especifica el comportamiento exacto de la operación Estas operaciones no pueden modificar el contenido del <em>stream</em> original.</p>
+<p>Por otro lado, se puede observar que la mayoría de las operaciones que se aplican sobre <em>streams</em> aceptan algún tipo de parámetro en forma de <em>expresión lambda</em>, que es una interfaz funcional que especifica el comportamiento exacto de la operación. Estas operaciones no pueden modificar el contenido del <em>stream</em> original.</p>
 <p>En el ejemplo anterior, se puede observar que ninguna de las operaciones modifica la variable <code>myList</code> añadiendo o eliminando elementos, sino que sólo se realiza el filtrado de los elementos que no empiezan por "c", se transforman a mayúsculas, se ordenan en orden alfabético y se imprimen por pantalla.</p>
 <p>Más información: <a href="https://www.oracle.com/technetwork/es/articles/java/expresiones-lambda-api-stream-java-2737544-esa.html">https://www.oracle.com/technetwork/es/articles/java/expresiones-lambda-api-stream-java-2737544-esa.html</a></p>
 <p>Finalmente, se incluye otro ejemplo del uso del Stream API en Java:</p>
@@ -442,7 +444,8 @@
     <span class="p">.</span><span class="na">stream</span><span class="p">()</span>
     <span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)</span>
     <span class="p">.</span><span class="na">collect</span><span class="p">(</span>
-       <span class="n">Collectors</span><span class="p">.</span><span class="na">toCollection</span><span class="p">(()</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="p">()));</span>
+       <span class="n">Collectors</span><span class="p">.</span><span class="na">toCollection</span><span class="p">(()</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="p">())</span>
+    <span class="p">);</span>
 
 <span class="n">mayores</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">));</span>
 </code></pre></div>
@@ -455,14 +458,15 @@
 5
 </code></pre></div>
 
-<h2 id="definicion-de-operaciones-disponibles-en-el-api">Definición de operaciones disponibles en el API<a class="headerlink" href="#definicion-de-operaciones-disponibles-en-el-api" title="Permanent link">&para;</a></h2>
+<h2 id="definicion-de-operaciones-disponibles-en-la-api">Definición de operaciones disponibles en la API<a class="headerlink" href="#definicion-de-operaciones-disponibles-en-la-api" title="Permanent link">&para;</a></h2>
 <p>A continuación, se describen las operaciones disponibles en el Stream API haciendo la comparativa con las consultas realizadas en SQL:</p>
 <h3 id="consultas-simples">Consultas simples<a class="headerlink" href="#consultas-simples" title="Permanent link">&para;</a></h3>
 <p>En este caso se desea listar el nombre de todos los productos disponibles en la base de datos.</p>
 <p>Si se considera la siguiente consulta SQL:</p>
-<p><div class="codehilite"><pre><span></span><code><span class="k">select</span> <span class="n">name</span> <span class="k">from</span> <span class="n">products</span><span class="p">;</span>
+<div class="codehilite"><pre><span></span><code><span class="k">select</span> <span class="n">name</span> <span class="k">from</span> <span class="n">products</span><span class="p">;</span>
 </code></pre></div>
-El equivalente con Stream API sería:</p>
+
+<p>El equivalente con Stream API sería:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">List</span><span class="o">&lt;</span><span class="n">Products</span><span class="o">&gt;</span> <span class="n">products</span><span class="p">;</span>
 
 <span class="p">...</span>
@@ -488,11 +492,11 @@ El equivalente con Stream API sería:</p>
 
 <ul>
 <li>Con el método <code>stream()</code> se obtiene la secuencia de elementos de tipo <code>Product</code>. Sería equivalente al <code>from</code> de SQL.</li>
-<li>Con el método <code>filter</code> se recuperan únicamente los productos que cumplan la condición que se le pasa por parámetros. En este caso, los que su número de unidades sea mayor a 10. Sería equivalente al <code>where</code> de SQL.</li>
+<li>Con el método <code>filter</code> se recuperan únicamente los productos que cumplan la condición que se le pasa como parámetro. En este caso, los que su número de unidades sea mayor a 10. Sería equivalente al <code>where</code> de SQL.</li>
 <li>Con el método <code>map</code> se recupera únicamente el atributo <code>name</code>. Sería equivalente al <code>select</code> de SQL.</li>
 </ul>
 <h3 id="consultas-con-ordenacion">Consultas con ordenación<a class="headerlink" href="#consultas-con-ordenacion" title="Permanent link">&para;</a></h3>
-<p>En este caso se desea listar los nombres de los producctos cuya existencia en el almaen sea menor a 10 unidades pero en orden ascendente, es decir, de menor existencia a mayor existencia.</p>
+<p>En este caso se desea listar los nombres de los productos cuya existencia en el almacén sea menor a 10 unidades pero en orden ascendente, es decir, de menor existencia a mayor existencia.</p>
 <p>Si se considera la siguiente consulta SQL:</p>
 <div class="codehilite"><pre><span></span><code><span class="k">select</span> <span class="n">name</span> <span class="k">from</span> <span class="n">products</span> <span class="k">where</span> <span class="n">units_in_stock</span> <span class="o">&lt;</span> <span class="mi">10</span>
 <span class="k">order</span> <span class="k">by</span> <span class="n">units_in_stock</span> <span class="k">asc</span><span class="p">;</span>
@@ -507,48 +511,49 @@ El equivalente con Stream API sería:</p>
 
 <ul>
 <li>Con el método <code>stream()</code> se obtiene la secuencia de elementos de tipo <code>Product</code>. Sería equivalente al <code>from</code> de SQL.</li>
-<li>Con el método <code>filter</code> se recuperan únicamente los productos que cumplan la condición que se le pasa por parámetros. En este caso, los que su número de unidades sea mayor a 10. Sería equivalente al <code>where</code> de SQL.</li>
-<li>Con el método <code>sorted</code> se recuperan los productos utilizando el método de ordenación que recibe por parámetros. En este caso, los recupera en orden ascendente comparando su número de unidades. Sería equivalente al <code>order by</code> de SQL.</li>
+<li>Con el método <code>filter</code> se recuperan únicamente los productos que cumplan la condición que se le pasa como parámetro. En este caso, los que su número de unidades sea mayor a 10. Sería equivalente al <code>where</code> de SQL.</li>
+<li>Con el método <code>sorted</code> se recuperan los productos utilizando el método de ordenación que recibe como parámetro. En este caso, los recupera en orden ascendente comparando su número de unidades. Sería equivalente al <code>order by</code> de SQL.</li>
 <li>Con el método <code>map</code> se recupera únicamente el atributo <code>name</code>. Sería equivalente al <code>select</code> de SQL.</li>
 </ul>
 <h3 id="consultas-con-agrupacion">Consultas con agrupación<a class="headerlink" href="#consultas-con-agrupacion" title="Permanent link">&para;</a></h3>
 <p>En este caso se desea listar el número de productos agrupados por proveedor.</p>
 <p>Si se considera la siguiente consulta SQL:</p>
-<p><div class="codehilite"><pre><span></span><code><span class="k">Select</span> <span class="k">count</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">supplierID</span> <span class="k">from</span> <span class="n">products</span>
-<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">supplierID</span>
+<div class="codehilite"><pre><span></span><code><span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">supplierID</span> <span class="k">from</span> <span class="n">products</span>
+<span class="k">group</span> <span class="k">by</span> <span class="n">supplierID</span>
 </code></pre></div>
-El equivalente con Stream API sería:</p>
+
+<p>El equivalente con Stream API sería:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="n">collect</span> <span class="o">=</span> <span class="n">products</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
-        <span class="p">.</span><span class="na">collect</span><span class="p">(</span> 
-                <span class="n">Collectors</span><span class="p">.</span><span class="na">groupingBy</span><span class="p">(</span> 
-                        <span class="n">Product</span><span class="p">::</span><span class="n">getSupplier</span><span class="p">,</span>
-                        <span class="n">Collectors</span><span class="p">.</span><span class="na">counting</span><span class="p">()</span>
-                    <span class="p">)</span>
-                <span class="p">);</span>
+    <span class="p">.</span><span class="na">collect</span><span class="p">(</span>
+        <span class="n">Collectors</span><span class="p">.</span><span class="na">groupingBy</span><span class="p">(</span>
+            <span class="n">Product</span><span class="p">::</span><span class="n">getSupplier</span><span class="p">,</span>
+            <span class="n">Collectors</span><span class="p">.</span><span class="na">counting</span><span class="p">()</span>
+        <span class="p">)</span>
+    <span class="p">);</span>
 
 <span class="n">collect</span><span class="p">.</span><span class="na">forEach</span><span class="p">((</span><span class="n">s</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;proveedor: %s: productos: %s \n&quot;</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span><span class="n">c</span><span class="p">));</span>
 </code></pre></div>
 
 <ul>
 <li>Con el método <code>stream()</code> se obtiene la secuencia de elementos de tipo <code>Product</code>. Sería equivalente al <code>from</code> de SQL.</li>
-<li>Con el método <code>collect</code> se realiza el agrupamiento a través de los criterios recibidos por parámetros. En este caso, los productos se agrupan por proveedor y se cuentan. Sería el equivalent a <code>group by</code> en SQL.</li>
+<li>Con el método <code>collect</code> se realiza el agrupamiento a través de los criterios recibidos como parámetros. En este caso, los productos se agrupan por proveedor y se cuentan. Sería el equivalent a <code>group by</code> en SQL.</li>
 </ul>
 <h3 id="consultas-con-sumatorios">Consultas con sumatorios<a class="headerlink" href="#consultas-con-sumatorios" title="Permanent link">&para;</a></h3>
 <p>En este caso se desea obtener la suma del precio unitario de todos los productos agrupados por el número existente en el almacen.</p>
 <p>Si se considera la siguiente consulta SQL:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">Select</span>  <span class="n">unitsInStock</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">unitPrice</span><span class="p">)</span> <span class="k">from</span> <span class="n">products</span>
-<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">unitsInStock</span><span class="p">;</span>
+<div class="codehilite"><pre><span></span><code><span class="k">select</span>  <span class="n">unitsInStock</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">unitPrice</span><span class="p">)</span> <span class="k">from</span> <span class="n">products</span>
+<span class="k">group</span> <span class="k">by</span> <span class="n">unitsInStock</span><span class="p">;</span>
 </code></pre></div>
 
 <p>El equivalente con Stream API sería:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Double</span><span class="o">&gt;</span> <span class="n">collect</span> <span class="o">=</span> <span class="n">products</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
-        <span class="p">.</span><span class="na">collect</span><span class="p">(</span> 
-                <span class="n">Collectors</span><span class="p">.</span><span class="na">groupingBy</span><span class="p">(</span> 
-                        <span class="n">Product</span><span class="p">::</span><span class="n">getUnitsInStock</span><span class="p">,</span>
-                        <span class="n">Collectors</span><span class="p">.</span><span class="na">summingDouble</span><span class="p">(</span> 
-                                <span class="n">Product</span><span class="p">::</span><span class="n">getUnitPrice</span> 
-                        <span class="p">)</span>
+        <span class="p">.</span><span class="na">collect</span><span class="p">(</span>
+            <span class="n">Collectors</span><span class="p">.</span><span class="na">groupingBy</span><span class="p">(</span>
+                <span class="n">Product</span><span class="p">::</span><span class="n">getUnitsInStock</span><span class="p">,</span>
+                <span class="n">Collectors</span><span class="p">.</span><span class="na">summingDouble</span><span class="p">(</span>
+                    <span class="n">Product</span><span class="p">::</span><span class="n">getUnitPrice</span>
                 <span class="p">)</span>
+            <span class="p">)</span>
         <span class="p">);</span>
 
 <span class="n">collect</span><span class="p">.</span><span class="na">forEach</span><span class="p">((</span><span class="n">stock</span><span class="p">,</span> <span class="n">suma</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;en stock: %s: suma: %s \n&quot;</span><span class="p">,</span> <span class="n">stock</span><span class="p">,</span><span class="n">suma</span><span class="p">));</span>
@@ -556,37 +561,37 @@ El equivalente con Stream API sería:</p>
 
 <ul>
 <li>Con el método <code>stream()</code> se obtiene la secuencia de elementos de tipo <code>Product</code>. Sería equivalente al <code>from</code> de SQL.</li>
-<li>Con el método <code>collect</code> se realiza el agrupamiento a través de los criterios recibidos por parámetros. En este caso, los productos se agrupan por número de unidades existentes en el almacen y se suman. Sería el equivalent a <code>group by</code> con el uso de <code>sum</code> en SQL.</li>
+<li>Con el método <code>collect</code> se realiza el agrupamiento a través de los criterios recibidos como parámetros. En este caso, los productos se agrupan por número de unidades existentes en el almacen y se suman. Sería el equivalent a <code>group by</code> con el uso de <code>sum</code> en SQL.</li>
 </ul>
 <h3 id="consultas-con-filtrado-sobre-grupos">Consultas con filtrado sobre grupos<a class="headerlink" href="#consultas-con-filtrado-sobre-grupos" title="Permanent link">&para;</a></h3>
 <p>En este caso se desea obtener la suma del precio unitario de todos los productos agrupados por su número de existencias en el almacen, pero solo obtener aquellos productos cuya suma sea mayor a 100.</p>
 <p>Si se considera la siguiente consulta SQL:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">Select</span>  <span class="n">unitsInStock</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">unitPrice</span><span class="p">)</span> <span class="k">from</span> <span class="n">products</span>
-<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">unitsInStock</span>
-<span class="k">HAVING</span> <span class="k">sum</span><span class="p">(</span><span class="n">unitPrice</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">;</span>
+<div class="codehilite"><pre><span></span><code><span class="k">select</span>  <span class="n">unitsInStock</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">unitPrice</span><span class="p">)</span> <span class="k">from</span> <span class="n">products</span>
+<span class="k">group</span> <span class="k">by</span> <span class="n">unitsInStock</span>
+<span class="k">having</span> <span class="k">sum</span><span class="p">(</span><span class="n">unitPrice</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">;</span>
 </code></pre></div>
 
 <p>El equivalente con Stream API sería:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="p">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Double</span><span class="o">&gt;&gt;</span> <span class="n">entryList</span> <span class="o">=</span> <span class="n">products</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
-        <span class="p">.</span><span class="na">collect</span><span class="p">(</span> 
-                <span class="n">Collectors</span><span class="p">.</span><span class="na">groupingBy</span><span class="p">(</span> 
-                        <span class="n">Product</span><span class="p">::</span><span class="n">getUnitsInStock</span><span class="p">,</span> 
-                        <span class="n">Collectors</span><span class="p">.</span><span class="na">summingDouble</span><span class="p">(</span>
-                                <span class="n">Product</span><span class="p">::</span><span class="n">getUnitPrice</span>
-                        <span class="p">)</span>
-                <span class="p">)</span>
-        <span class="p">).</span><span class="na">entrySet</span><span class="p">()</span>
-        <span class="p">.</span><span class="na">stream</span><span class="p">()</span> 
-        <span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="p">.</span><span class="na">getValue</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">)</span> 
-        <span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span>
+    <span class="p">.</span><span class="na">collect</span><span class="p">(</span>
+        <span class="n">Collectors</span><span class="p">.</span><span class="na">groupingBy</span><span class="p">(</span>
+            <span class="n">Product</span><span class="p">::</span><span class="n">getUnitsInStock</span><span class="p">,</span>
+            <span class="n">Collectors</span><span class="p">.</span><span class="na">summingDouble</span><span class="p">(</span>
+                <span class="n">Product</span><span class="p">::</span><span class="n">getUnitPrice</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="p">).</span><span class="na">entrySet</span><span class="p">()</span>
+    <span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+    <span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="p">.</span><span class="na">getValue</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span>
 
 <span class="n">entryList</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">list</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;en stock: %s, suma: %s\n&quot;</span><span class="p">,</span><span class="n">list</span><span class="p">.</span><span class="na">getKey</span><span class="p">(),</span> <span class="n">list</span><span class="p">.</span><span class="na">getValue</span><span class="p">()));</span>
 </code></pre></div>
 
 <ul>
 <li>Con el método <code>stream()</code> se obtiene la secuencia de elementos de tipo <code>Product</code>. Sería equivalente al <code>from</code> de SQL</li>
-<li>Con el método <code>collect</code> se realiza el agrupamiento a través de los criterios recibidos por parámetros. En este caso, los productos se agrupan por número de unidades existentes en el almacen y se suman. Sería el equivalent a <code>group by</code> con el uso de <code>sum</code> en SQL.</li>
-<li>Con el método <code>filter</code> se recuperan únicamente los productos que cumplan la condición que se le pasa por parámetros. En este caso, los que la suma sea mayor a 100. En este caso, sería equivalente al <code>having</code> de SQL porque va detrás de una operación con criterios de agrupación.</li>
+<li>Con el método <code>collect</code> se realiza el agrupamiento a través de los criterios recibidos como parámetros. En este caso, los productos se agrupan por número de unidades existentes en el almacen y se suman. Sería el equivalent a <code>group by</code> con el uso de <code>sum</code> en SQL.</li>
+<li>Con el método <code>filter</code> se recuperan únicamente los productos que cumplan la condición que se le pasa como parámetro. En este caso, los que la suma sea mayor a 100. En este caso, sería equivalente al <code>having</code> de SQL porque va detrás de una operación con criterios de agrupación.</li>
 </ul>
 <h1 id="ejercicios-propuestos"><span style="color:blue">Ejercicios propuestos</span><a class="headerlink" href="#ejercicios-propuestos" title="Permanent link">&para;</a></h1>
 <h2 id="ejercicio-1">Ejercicio 1<a class="headerlink" href="#ejercicio-1" title="Permanent link">&para;</a></h2>
@@ -681,7 +686,6 @@ El equivalente con Stream API sería:</p>
 
 <h3 id="mainjava">Main.java<a class="headerlink" href="#mainjava" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="p">{</span>
-
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Employee = &quot;</span> <span class="o">+</span> <span class="n">EmployeeDatabase</span><span class="p">.</span><span class="na">getEmployeeByName</span><span class="p">(</span><span class="s">&quot;Employee1&quot;</span><span class="p">));</span>
         <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Employee = &quot;</span> <span class="o">+</span> <span class="n">EmployeeDatabase</span><span class="p">.</span><span class="na">getEmployeeByName</span><span class="p">(</span><span class="s">&quot;EmployeeNull&quot;</span><span class="p">));</span>
@@ -694,9 +698,9 @@ El equivalente con Stream API sería:</p>
 </code></pre></div>
 
 <ol>
-<li>Modifique las operaciones de la clase <code>EmployeeDatabase</code> utilizando las operaciones del API para Stream de Java 8.</li>
-<li>Extienda el API de la clase <code>EmployeeDatabase</code> añadiendo las siguientes operaciones:</li>
-</ol>
+<li>Modifique las operaciones de la clase <code>EmployeeDatabase</code> utilizando las operaciones de la API para Stream de Java 8.</li>
+<li>
+<p>Extienda la API de la clase <code>EmployeeDatabase</code> añadiendo las siguientes operaciones:</p>
 <ul>
 <li>Obtener los empleados cuya edad este comprendida entre un rango dado en la operación como parámetros (<code>maxAge</code> y <code>minAge</code>).</li>
 <li>Obtener los empleados ordenados ascendentemente por su edad.</li>
@@ -704,11 +708,13 @@ El equivalente con Stream API sería:</p>
 <li>Obtener el número de empleados que existen en la base de datos.</li>
 <li>Obtener el número de empleados que existen en la base de datos y su nombre es igual a uno dado en la operación como parámetro.</li>
 </ul>
-<h2 id="ejercicio-2">Ejercicio 2<a class="headerlink" href="#ejercicio-2" title="Permanent link">&para;</a></h2>
-<p>Basandose en el código del ejercicio anterior implemente un API para una tienda de videojuegos, teniendo en cuenta lo siguiente:</p>
-<ol>
-<li>Implemente la clase <code>Videogame</code> contemplando los siguientes criterios:</li>
+</li>
 </ol>
+<h2 id="ejercicio-2">Ejercicio 2<a class="headerlink" href="#ejercicio-2" title="Permanent link">&para;</a></h2>
+<p>Basándose en el código del ejercicio anterior, implemente una API para una tienda de videojuegos, teniendo en cuenta lo siguiente:</p>
+<ol>
+<li>
+<p>Implemente la clase <code>Videogame</code> contemplando los siguientes criterios:</p>
 <p>a) La clase contendrá los siguientes atributos:</p>
 <ul>
 <li>El título de tipo string.</li>
@@ -716,14 +722,14 @@ El equivalente con Stream API sería:</p>
 <li>El precio de tipo double.</li>
 </ul>
 <p>b) La clase contendrá las operaciones <code>set</code> y <code>get</code> necesarias para el acceso a los atributos anteriores.</p>
-<ol start="2">
-<li>Implemente la clase <code>VideogameDatabase</code> contemplando los siguientes criterios:</li>
-</ol>
+</li>
+<li>
+<p>Implemente la clase <code>VideogameDatabase</code> contemplando los siguientes criterios:</p>
 <p>a) La clase contendrá los siguientes atributos:</p>
 <ul>
 <li>La lista de videojuegos existentes de tipo <code>Videogame</code>.</li>
 </ul>
-<p>b) La clase contendrá las siguientes operaciones implementadas con el Stream API de Java 8.</p>
+<p>b) La clase contendrá las siguientes operaciones implementadas con el Stream API de Java 8:</p>
 <ul>
 <li>Listar todos los títulos de los videojuegos.</li>
 <li>Listar todos los títulos de los videojuegos cuyo precio sea superior a 20€.</li>
@@ -734,8 +740,10 @@ El equivalente con Stream API sería:</p>
 <li>Obtener la suma de los precios de los videojuegos agrupados por categoría.</li>
 <li>Obtener la suma de los precios de los videojuegos agrupados por cateogoría, siempre que el precio obtenido de la suma sea superior a 200€.</li>
 </ul>
-<ol start="3">
-<li>Implemente además un programa de prueba <code>Main</code> que ilustre el uso de las operaciones anteriores.</li>
+</li>
+<li>
+<p>Implemente además un programa de prueba <code>Main</code> que ilustre el uso de las operaciones anteriores.</p>
+</li>
 </ol>
 <h1 id="referencias">Referencias<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h1>
 <p><a href="https://winterbe.com/posts/2014/07/31/java8-stream-tutorial-examples/">[1] Blog: Java 8 Stream Tutorial.</a></p>
